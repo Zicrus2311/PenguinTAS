@@ -65,5 +65,13 @@ namespace PenguinTAS {
         private void richTextBox1_KeyDown(object sender, KeyEventArgs e) {
             e.Handled = TextEditor.HandleKeyInput(e);
         }
+
+        private void richTextBox1_TextChanged(object sender, EventArgs e) {
+            SyntaxHighlighter.Highlight(richTextBox1);
+        }
+
+        private void richTextBox2_TextChanged(object sender, EventArgs e) {
+            SyntaxHighlighter.Highlight(richTextBox2);
+        }
     }
 }

@@ -32,10 +32,52 @@ namespace PenguinTAS {
                     InsertAtEndOfLine("#");
                 }
             }
+            FixSelection();
             return true;
         }
 
         public static bool HandleKeyInput(KeyEventArgs e) {
+            if (e.KeyCode == Keys.Up) {
+                int line = textBox.GetLineFromCharIndex(textBox.SelectionStart);
+                if (line > 0) {
+                    line--;
+                    int newIndex = textBox.GetFirstCharIndexFromLine(line);
+                    if (e.Control) {
+                        while (line > 0 && (textBox.Lines[line].Length == 0 || textBox.Lines[line][0] != '#')) {
+                            line--;
+                        }
+                        newIndex = textBox.GetFirstCharIndexFromLine(line);
+                    }
+                    if (e.Shift) {
+                        textBox.SelectionLength += textBox.SelectionStart - newIndex;
+                        textBox.SelectionStart = newIndex;
+                    }
+                    else {
+                        textBox.SelectionLength = 0;
+                        textBox.SelectionStart = newIndex;
+                    }
+                }
+            }
+            if (e.KeyCode == Keys.Down) {
+                int line = textBox.GetLineFromCharIndex(textBox.SelectionStart + textBox.SelectionLength);
+                if (line < textBox.Lines.Length - 1) {
+                    line++;
+                    int newIndex = textBox.GetFirstCharIndexFromLine(line);
+                    if (e.Control) {
+                        while (line < textBox.Lines.Length - 1 && (textBox.Lines[line].Length == 0 || textBox.Lines[line][0] != '#')) {
+                            line++;
+                        }
+                        newIndex = textBox.GetFirstCharIndexFromLine(line);
+                    }
+                    if (e.Shift) {
+                        textBox.SelectionLength += newIndex - textBox.SelectionStart;
+                    }
+                    else {
+                        textBox.SelectionLength = 0;
+                        textBox.SelectionStart = newIndex;
+                    }
+                }
+            }
             if (e.KeyCode == Keys.Back) {
                 if (textBox.SelectionLength > 0) {
                     DeleteSelection();
@@ -44,9 +86,13 @@ namespace PenguinTAS {
                     DeleteBeforeSelection();
                 }
             }
+            if (e.KeyCode == Keys.Delete) {
+                DeleteSelectedLine();
+            }
             if (e.KeyCode == Keys.Return) {
                 InsertAtEndOfLine("\n");
             }
+            FixSelection();
             return true;
         }
 
@@ -77,19 +123,26 @@ namespace PenguinTAS {
                 textBox.Select(selectionStart - 1, 0);
             }
             else {
-                int line = textBox.GetLineFromCharIndex(selectionStart);
-                int lineStart = textBox.GetFirstCharIndexFromLine(line);
-                int lineLength = textBox.Lines[line].Length;
-                textBox.Text = textBox.Text.Remove(lineStart, Math.Min(lineLength + 1, textBox.Text.Length - lineStart));
-                textBox.Select(Math.Max(lineStart - 1, 0), 0);
+                DeleteSelectedLine();
             }
         }
 
         static void DeleteSelection() {
+
             int selectionStart = textBox.SelectionStart;
             int selectionLength = textBox.SelectionLength;
             textBox.Text = textBox.Text.Remove(selectionStart, selectionLength);
             textBox.Select(selectionStart, 0);
+        }
+
+        static void DeleteSelectedLine() {
+            if (textBox.Text.Length == 0) return;
+
+            int line = textBox.GetLineFromCharIndex(textBox.SelectionStart);
+            int lineStart = textBox.GetFirstCharIndexFromLine(line);
+            int lineLength = textBox.Lines[line].Length;
+            textBox.Text = textBox.Text.Remove(lineStart, Math.Min(lineLength + 1, textBox.Text.Length - lineStart));
+            textBox.Select(Math.Max(lineStart - 1, 0), 0);
         }
 
         static void FixSelection() {

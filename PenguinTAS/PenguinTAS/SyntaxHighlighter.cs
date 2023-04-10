@@ -25,8 +25,8 @@
         }
 
         static void SetColor(RichTextBox textBox, int start, int length, Color color) {
-            //textBox.Select(start, length);
-            //textBox.SelectionColor = color;
+            textBox.Select(start, length);
+            textBox.SelectionColor = color;
         }
     }
 }

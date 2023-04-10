@@ -12,6 +12,7 @@ namespace PenguinTAS {
         public static void New() {
             textBox1!.Text = "#Player 1";
             textBox2!.Text = "#Player 2";
+            SyntaxHighlighter.Highlight(textBox1, textBox2);
             currentPath = null;
         }
 
@@ -19,6 +20,7 @@ namespace PenguinTAS {
             string[] text = File.ReadAllText(path).Split('|');
             textBox1!.Text = text[0];
             textBox2!.Text = text[1];
+            SyntaxHighlighter.Highlight(textBox1, textBox2);
             currentPath = path;
         }
 
@@ -30,6 +32,7 @@ namespace PenguinTAS {
                 string[] text = File.ReadAllText(ofd.FileName).Split('|');
                 textBox1!.Text = text[0];
                 textBox2!.Text = text[1];
+                SyntaxHighlighter.Highlight(textBox1, textBox2);
                 currentPath = ofd.FileName;
             }
         }

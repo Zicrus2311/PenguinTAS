@@ -4,9 +4,33 @@ namespace PenguinTAS {
     public static class TextEditor {
         public static RichTextBox? textBox;
 
+        static readonly char[] allowedLetters = {
+            'W',
+            'A',
+            'S',
+            'D'
+        };
+
+        static readonly char[] whitespace = {
+            ' ',
+            '\n'
+        };
+
         public static bool HandleCharInput(KeyPressEventArgs e) {
-            if (IsNumber(e.KeyChar)) {
-                InsertBeforeSelection(e.KeyChar);
+            char character = e.KeyChar.ToString().ToUpper()[0];
+            if (IsNumber(character)) {
+                InsertBeforeSelection(character.ToString());
+            }
+            if (allowedLetters.Contains(character)) {
+                InsertBeforeSelection(character.ToString());
+            }
+            if (character == '#') {
+                if (textBox.SelectionStart != 0 && !whitespace.Contains(textBox.Text[textBox.SelectionStart - 1])) {
+                    InsertAtEndOfLine("\n#");
+                }
+                else {
+                    InsertAtEndOfLine("#");
+                }
             }
             return true;
         }
@@ -21,16 +45,27 @@ namespace PenguinTAS {
                 }
             }
             if (e.KeyCode == Keys.Return) {
-                InsertBeforeSelection('\n');
+                InsertAtEndOfLine("\n");
             }
             return true;
         }
 
-        static void InsertBeforeSelection(char text) {
+        static void InsertAtEndOfLine(string text) {
+            int selectionStart = textBox.SelectionStart;
+            int line = textBox.GetLineFromCharIndex(selectionStart);
+            int lineStart = textBox.GetFirstCharIndexFromLine(line);
+            int lineLength = textBox.Lines[line].Length;
+            int lineEnd = lineStart + lineLength;
+
+            textBox.Text = textBox.Text.Insert(lineEnd, text);
+            textBox.Select(lineEnd + text.Length, 0);
+        }
+
+        static void InsertBeforeSelection(string text) {
             int selectionStart = textBox.SelectionStart;
             DeleteSelection();
             textBox.Text = textBox.Text.Insert(selectionStart, text.ToString());
-            textBox.Select(selectionStart + 1, 0);
+            textBox.Select(selectionStart + text.Length, 0);
         }
 
         static void DeleteBeforeSelection() {

@@ -205,6 +205,7 @@
             this.richTextBox1.Size = new System.Drawing.Size(394, 420);
             this.richTextBox1.TabIndex = 1;
             this.richTextBox1.Text = "";
+            this.richTextBox1.WordWrap = false;
             this.richTextBox1.KeyDown += new System.Windows.Forms.KeyEventHandler(this.richTextBox1_KeyDown);
             this.richTextBox1.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.richTextBox1_KeyPress);
             // 
@@ -219,6 +220,7 @@
             this.richTextBox2.Size = new System.Drawing.Size(394, 420);
             this.richTextBox2.TabIndex = 2;
             this.richTextBox2.Text = "";
+            this.richTextBox2.WordWrap = false;
             // 
             // tableLayoutPanel1
             // 

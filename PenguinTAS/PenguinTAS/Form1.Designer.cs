@@ -201,6 +201,7 @@
             this.richTextBox1.ForeColor = System.Drawing.Color.White;
             this.richTextBox1.Location = new System.Drawing.Point(3, 3);
             this.richTextBox1.Name = "richTextBox1";
+            this.richTextBox1.ShortcutsEnabled = false;
             this.richTextBox1.Size = new System.Drawing.Size(394, 420);
             this.richTextBox1.TabIndex = 1;
             this.richTextBox1.Text = "";
@@ -214,6 +215,7 @@
             this.richTextBox2.ForeColor = System.Drawing.Color.White;
             this.richTextBox2.Location = new System.Drawing.Point(403, 3);
             this.richTextBox2.Name = "richTextBox2";
+            this.richTextBox2.ShortcutsEnabled = false;
             this.richTextBox2.Size = new System.Drawing.Size(394, 420);
             this.richTextBox2.TabIndex = 2;
             this.richTextBox2.Text = "";

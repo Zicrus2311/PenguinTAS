@@ -36,8 +36,18 @@ namespace PenguinTAS {
         static void DeleteBeforeSelection() {
             int selectionStart = textBox.SelectionStart;
             if (selectionStart == 0) return;
-            textBox.Text = textBox.Text.Remove(selectionStart - 1, 1);
-            textBox.Select(selectionStart - 1, 0);
+
+            if (IsNumber(textBox.Text[selectionStart - 1])) {
+                textBox.Text = textBox.Text.Remove(selectionStart - 1, 1);
+                textBox.Select(selectionStart - 1, 0);
+            }
+            else {
+                int line = textBox.GetLineFromCharIndex(selectionStart);
+                int lineStart = textBox.GetFirstCharIndexFromLine(line);
+                int lineLength = textBox.Lines[line].Length;
+                textBox.Text = textBox.Text.Remove(lineStart, Math.Min(lineLength + 1, textBox.Text.Length - lineStart));
+                textBox.Select(Math.Max(lineStart - 1, 0), 0);
+            }
         }
 
         static void DeleteSelection() {
@@ -60,7 +70,8 @@ namespace PenguinTAS {
             }
             else {
                 int line = textBox.GetLineFromCharIndex(selectionStart);
-                //textBox.SelectionStart = textBox.GetFirstCharIndexFromLine(line) + OFFSET;
+                int lineStart = textBox.GetFirstCharIndexFromLine(line);
+                //textBox.SelectionStart = lineStart + OFFSET;
             }
         }
 

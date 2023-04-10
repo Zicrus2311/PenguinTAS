@@ -1,19 +1,24 @@
-﻿using System.Security.Cryptography;
+﻿using System.IO;
+using System.Security.Cryptography;
 using System.Windows.Forms;
 
 namespace PenguinTAS {
     public static class FileManager {
-        public static RichTextBox? textBox;
+        public static RichTextBox? textBox1;
+        public static RichTextBox? textBox2;
 
         static string? currentPath = null;
 
         public static void New() {
-            textBox!.Clear();
+            textBox1!.Text = "#Player 1";
+            textBox2!.Text = "#Player 2";
             currentPath = null;
         }
 
         public static void OpenPath(string path) {
-            textBox!.Text = File.ReadAllText(path);
+            string[] text = File.ReadAllText(path).Split('|');
+            textBox1!.Text = text[0];
+            textBox2!.Text = text[1];
             currentPath = path;
         }
 
@@ -22,7 +27,9 @@ namespace PenguinTAS {
             ofd.Filter = "TAS Files (.2tas)|*.2tas";
             ofd.Title = "Open...";
             if (ofd.ShowDialog() == DialogResult.OK) {
-                textBox!.Text = File.ReadAllText(ofd.FileName);
+                string[] text = File.ReadAllText(ofd.FileName).Split('|');
+                textBox1!.Text = text[0];
+                textBox2!.Text = text[1];
                 currentPath = ofd.FileName;
             }
         }
@@ -33,7 +40,7 @@ namespace PenguinTAS {
                 return;
             }
 
-            File.WriteAllText(currentPath, textBox!.Text);
+            File.WriteAllText(currentPath, textBox1!.Text + '|' + textBox2!.Text);
         }
 
         public static void SaveAs() {
@@ -41,7 +48,7 @@ namespace PenguinTAS {
             sfd.Filter = "TAS Files (.2tas)|*.2tas";
             sfd.Title = "Save...";
             if (sfd.ShowDialog() == DialogResult.OK) {
-                File.WriteAllText(sfd.FileName, textBox!.Text);
+                File.WriteAllText(sfd.FileName, textBox1!.Text + '|' + textBox2!.Text);
                 currentPath = sfd.FileName;
             }
         }

@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "D:\\VSProjects\\PenguinTAS\\PenguinTAS\\PenguinTAS.csproj": {}
+    "D:\\Repos\\PenguinTAS\\PenguinTAS\\PenguinTAS\\PenguinTAS.csproj": {}
   },
   "projects": {
-    "D:\\VSProjects\\PenguinTAS\\PenguinTAS\\PenguinTAS.csproj": {
+    "D:\\Repos\\PenguinTAS\\PenguinTAS\\PenguinTAS\\PenguinTAS.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\VSProjects\\PenguinTAS\\PenguinTAS\\PenguinTAS.csproj",
+        "projectUniqueName": "D:\\Repos\\PenguinTAS\\PenguinTAS\\PenguinTAS\\PenguinTAS.csproj",
         "projectName": "PenguinTAS",
-        "projectPath": "D:\\VSProjects\\PenguinTAS\\PenguinTAS\\PenguinTAS.csproj",
+        "projectPath": "D:\\Repos\\PenguinTAS\\PenguinTAS\\PenguinTAS\\PenguinTAS.csproj",
         "packagesPath": "C:\\Users\\Bruger\\.nuget\\packages\\",
-        "outputPath": "D:\\VSProjects\\PenguinTAS\\PenguinTAS\\obj\\",
+        "outputPath": "D:\\Repos\\PenguinTAS\\PenguinTAS\\PenguinTAS\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"

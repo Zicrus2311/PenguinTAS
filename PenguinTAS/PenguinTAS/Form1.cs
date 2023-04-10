@@ -7,10 +7,6 @@ namespace PenguinTAS {
             }
         }
 
-        private void menuStrip1_ItemClicked(object sender, ToolStripItemClickedEventArgs e) {
-
-        }
-
         private void newToolStripMenuItem_Click(object sender, EventArgs e) {
             FileManager.New(richTextBox1);
         }
@@ -53,10 +49,6 @@ namespace PenguinTAS {
 
         private void selectAllToolStripMenuItem_Click(object sender, EventArgs e) {
             richTextBox1.SelectAll();
-        }
-
-        private void editToolStripMenuItem_Click(object sender, EventArgs e) {
-
         }
     }
 }

@@ -17,12 +17,26 @@ namespace PenguinTAS {
         };
 
         public static bool HandleCharInput(KeyPressEventArgs e) {
+            if (CommentSelected()) {
+                InsertBeforeSelection(e.KeyChar.ToString());
+                return true;
+            }
+
             char character = e.KeyChar.ToString().ToUpper()[0];
             if (IsNumber(character)) {
-                InsertBeforeSelection(character.ToString());
+                int line = textBox.GetLineFromCharIndex(textBox.SelectionStart);
+                if (textBox.Lines[line].Length > 0) {
+                    InsertBeforeSelection(character.ToString());
+                }
+                else {
+                    InsertBeforeSelection(character.ToString() + ' ');
+                }
             }
             if (allowedLetters.Contains(character)) {
-                InsertBeforeSelection(character.ToString());
+                int line = textBox.GetLineFromCharIndex(textBox.SelectionStart);
+                if (textBox.Lines[line].Length > 0) {
+                    InsertAtEndOfLine(',' + character.ToString());
+                }
             }
             if (character == '#') {
                 if (textBox.SelectionStart != 0 && !whitespace.Contains(textBox.Text[textBox.SelectionStart - 1])) {
@@ -90,7 +104,7 @@ namespace PenguinTAS {
                 DeleteSelectedLine();
             }
             if (e.KeyCode == Keys.Return) {
-                InsertAtEndOfLine("\n");
+                InsertAtEndOfLine("\n ");
             }
             FixSelection();
             return true;
@@ -99,6 +113,8 @@ namespace PenguinTAS {
         static void InsertAtEndOfLine(string text) {
             int selectionStart = textBox.SelectionStart;
             int line = textBox.GetLineFromCharIndex(selectionStart);
+            if (textBox.Lines.Length <= line) return;
+
             int lineStart = textBox.GetFirstCharIndexFromLine(line);
             int lineLength = textBox.Lines[line].Length;
             int lineEnd = lineStart + lineLength;
@@ -116,7 +132,10 @@ namespace PenguinTAS {
 
         static void DeleteBeforeSelection() {
             int selectionStart = textBox.SelectionStart;
-            if (selectionStart == 0) return;
+            if (selectionStart == 0) {
+                DeleteSelectedLine();
+                return;
+            }
 
             if (IsNumber(textBox.Text[selectionStart - 1])) {
                 textBox.Text = textBox.Text.Remove(selectionStart - 1, 1);
@@ -140,14 +159,27 @@ namespace PenguinTAS {
 
             int line = textBox.GetLineFromCharIndex(textBox.SelectionStart);
             int lineStart = textBox.GetFirstCharIndexFromLine(line);
-            int lineLength = textBox.Lines[line].Length;
-            textBox.Text = textBox.Text.Remove(lineStart, Math.Min(lineLength + 1, textBox.Text.Length - lineStart));
+            if (textBox.Lines.Length <= line) {
+                textBox.Text = textBox.Text.Remove(lineStart - 1, 1);
+            }
+            else {
+                int lineLength = textBox.Lines[line].Length;
+                textBox.Text = textBox.Text.Remove(lineStart, Math.Min(lineLength + 1, textBox.Text.Length - lineStart));
+            }
             textBox.Select(Math.Max(lineStart - 1, 0), 0);
         }
 
-        static void FixSelection() {
+        static bool CommentSelected() {
+            if (textBox.SelectionLength > 0 || textBox.Lines.Length == 0) return false;
+
+            int line = textBox.GetLineFromCharIndex(textBox.SelectionStart);
+            return textBox.Lines.Length > line && textBox.Lines[line].Length > 0 && textBox.Lines[line][0] == '#';
+        }
+
+        public static void FixSelection() {
             int selectionStart = textBox.SelectionStart;
             int selectionLength = textBox.SelectionLength;
+            int line = textBox.GetLineFromCharIndex(selectionStart);
             if (selectionLength > 0) {
                 int startLine = textBox.GetLineFromCharIndex(selectionStart);
                 int endLine = textBox.GetLineFromCharIndex(selectionStart + selectionLength - 1);
@@ -156,10 +188,18 @@ namespace PenguinTAS {
                 textBox.SelectionStart = startIndex;
                 textBox.SelectionLength = endIndex - startIndex;
             }
-            else {
-                int line = textBox.GetLineFromCharIndex(selectionStart);
+            else if (CommentSelected()) {
                 int lineStart = textBox.GetFirstCharIndexFromLine(line);
-                //textBox.SelectionStart = lineStart + OFFSET;
+                int lineLength = textBox.Lines[line].Length;
+                int lineEnd = lineStart + lineLength;
+                textBox.SelectionStart = lineEnd;
+            }
+            else if (textBox.Lines.Length > line) {
+                int lineStart = textBox.GetFirstCharIndexFromLine(line);
+                string[] splitLine = textBox.Lines[line].Split(',');
+                if (splitLine.Length > 0) {
+                    textBox.SelectionStart = lineStart + splitLine[0].Trim().Length;
+                }
             }
         }
 

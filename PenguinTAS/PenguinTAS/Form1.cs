@@ -67,11 +67,21 @@ namespace PenguinTAS {
         }
 
         private void richTextBox1_TextChanged(object sender, EventArgs e) {
+            SyntaxHighlighter.Indent(richTextBox1);
             SyntaxHighlighter.Highlight(richTextBox1);
         }
 
         private void richTextBox2_TextChanged(object sender, EventArgs e) {
+            SyntaxHighlighter.Indent(richTextBox2);
             SyntaxHighlighter.Highlight(richTextBox2);
+        }
+
+        private void richTextBox1_SelectionChanged(object sender, EventArgs e) {
+            TextEditor.FixSelection();
+        }
+
+        private void richTextBox2_SelectionChanged(object sender, EventArgs e) {
+            TextEditor.FixSelection();
         }
     }
 }

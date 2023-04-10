@@ -10,6 +10,11 @@ namespace PenguinTAS {
             currentPath = null;
         }
 
+        public static void OpenPath(RichTextBox textBox, string path) {
+            textBox.Text = File.ReadAllText(path);
+            currentPath = path;
+        }
+
         public static void Open(RichTextBox textBox) {
             OpenFileDialog ofd = new();
             ofd.Filter = "TAS Files (.2tas)|*.2tas";

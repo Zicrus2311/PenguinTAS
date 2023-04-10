@@ -1,7 +1,10 @@
 namespace PenguinTAS {
     public partial class Form1 : Form {
-        public Form1() {
+        public Form1(string? path) {
             InitializeComponent();
+            if (path != null) {
+                FileManager.OpenPath(richTextBox1, path);
+            }
         }
 
         private void menuStrip1_ItemClicked(object sender, ToolStripItemClickedEventArgs e) {

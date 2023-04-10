@@ -3,24 +3,26 @@ namespace PenguinTAS {
         public Form1(string? path) {
             InitializeComponent();
             if (path != null) {
-                FileManager.OpenPath(richTextBox1, path);
+                FileManager.OpenPath( path);
             }
+            FileManager.textBox = richTextBox1;
+            TextEditor.textBox = richTextBox1;
         }
 
         private void newToolStripMenuItem_Click(object sender, EventArgs e) {
-            FileManager.New(richTextBox1);
+            FileManager.New();
         }
 
         private void openToolStripMenuItem_Click(object sender, EventArgs e) {
-            FileManager.Open(richTextBox1);
+            FileManager.Open();
         }
 
         private void saveToolStripMenuItem_Click(object sender, EventArgs e) {
-            FileManager.Save(richTextBox1);
+            FileManager.Save();
         }
 
         private void saveAsToolStripMenuItem_Click(object sender, EventArgs e) {
-            FileManager.SaveAs(richTextBox1);
+            FileManager.SaveAs();
         }
 
         private void exitToolStripMenuItem_Click(object sender, EventArgs e) {
@@ -49,6 +51,14 @@ namespace PenguinTAS {
 
         private void selectAllToolStripMenuItem_Click(object sender, EventArgs e) {
             richTextBox1.SelectAll();
+        }
+
+        private void richTextBox1_KeyPress(object sender, KeyPressEventArgs e) {
+            e.Handled = TextEditor.HandleCharInput(e);
+        }
+
+        private void richTextBox1_KeyDown(object sender, KeyEventArgs e) {
+            e.Handled = TextEditor.HandleKeyInput(e);
         }
     }
 }

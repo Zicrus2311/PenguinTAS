@@ -5,7 +5,7 @@ public partial class PenguinTAS : Form {
 
     public PenguinTAS(string? path) {
         InitializeComponent();
-        TextBoxes = new RichTextBox[] { richTextBox1, richTextBox2 };
+        TextBoxes = new RichTextBox[] { textBox1, textBox2 };
         if (path != null) {
             FileManager.OpenPath(path);
         }

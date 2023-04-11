@@ -34,7 +34,7 @@ public static class TextSelection {
         UpdateTextBox(textBox);
     }
 
-    static void UpdateTextBox(RichTextBox textBox) {
+    public static void UpdateTextBox(RichTextBox textBox) {
         if (Count > 0) {
             UpdateTextBoxSelection(textBox);
         }

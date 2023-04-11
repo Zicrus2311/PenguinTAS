@@ -43,7 +43,10 @@ public static class InputHandler {
     }
 
     static void HandleNumber(RichTextBox textBox, char character) {
-
+        int editPos = Lines.EditPosition(textBox, TextSelection.Line);
+        int index = Lines.Start(textBox, TextSelection.Line) + editPos;
+        TextEditor.Insert(textBox, index, character);
+        TextSelection.UpdateTextBox(textBox);
     }
 
     static void HandleAction(RichTextBox textBox, char character) {
@@ -65,7 +68,7 @@ public static class InputHandler {
                 TextEditor.AddComment(textBox, selectedLine + i);
             }
         }
-        TextSelection.SelectLines(textBox, selectedLine, selectedLine + selectionCount - 1);
+        TextSelection.UpdateTextBox(textBox);
     }
 
     static void HandleUp(RichTextBox textBox, KeyEventArgs e) {
@@ -86,7 +89,7 @@ public static class InputHandler {
         if (editPos > 0) {
             int lineStart = Lines.Start(textBox, TextSelection.Line);
             TextEditor.Remove(textBox, lineStart + editPos - 1, 1);
-            TextSelection.SelectLine(textBox, TextSelection.Line);
+            TextSelection.UpdateTextBox(textBox);
         }
         else {
             TextEditor.RemoveLine(TextSelection.Line);

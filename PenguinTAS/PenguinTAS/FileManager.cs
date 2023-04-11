@@ -8,6 +8,7 @@ public static class FileManager {
             PenguinTAS.TextBoxes[i].Text = $"{Characters.commentStart}Player {i + 1}";
         }
         currentPath = null;
+        TextProcessor.ProcessAll();
     }
 
     public static void OpenPath(string path) {
@@ -16,6 +17,7 @@ public static class FileManager {
             PenguinTAS.TextBoxes[i].Text = GetPlayerText(fileText, i);
         }
         currentPath = path;
+        TextProcessor.ProcessAll();
     }
 
     public static void Open() {

@@ -6,11 +6,11 @@ public static class InputHandler {
         if (character == Characters.playerSeperator) {
             return true;
         }
-        if (character == Characters.commentStart) {
+        else if (character == Characters.commentStart) {
             HandleCommentStart(textBox, character);
         }
         else if (Lines.IsComment(textBox, TextSelection.Line) && TextSelection.Count == 0) {
-            return false;
+            HandleCommentText(textBox, character);
         }
         else if (Characters.IsNumber(character)) {
             HandleNumber(textBox, character);
@@ -18,6 +18,7 @@ public static class InputHandler {
         else if (Characters.IsAction(character)) {
             HandleAction(textBox, character);
         }
+        TextProcessor.Process(textBox);
         return true;
     }
 
@@ -39,7 +40,35 @@ public static class InputHandler {
                 HandleDelete(textBox, e);
                 break;
         }
+        TextProcessor.Process(textBox);
         return true;
+    }
+
+    static void HandleCommentStart(RichTextBox textBox, char character) {
+        int selectedLine = TextSelection.Line;
+        int selectionCount = TextSelection.Count;
+        if (Lines.IsComment(textBox, selectedLine)) {
+            TextEditor.RemoveComment(textBox, selectedLine);
+            for (int i = 1; i < selectionCount - 1; i++) {
+                TextEditor.RemoveComment(textBox, selectedLine + i);
+            }
+        }
+        else {
+            TextEditor.AddComment(textBox, selectedLine);
+            for (int i = 1; i < selectionCount - 1; i++) {
+                TextEditor.AddComment(textBox, selectedLine + i);
+            }
+        }
+        TextSelection.UpdateTextBox(textBox);
+    }
+
+    static void HandleCommentText(RichTextBox textBox, char character) {
+        if (!Characters.IsAllowedInComments(character)) return;
+
+        int editPos = Lines.EditPosition(textBox, TextSelection.Line);
+        int index = Lines.Start(textBox, TextSelection.Line) + editPos;
+        TextEditor.Insert(textBox, index, character);
+        TextSelection.UpdateTextBox(textBox);
     }
 
     static void HandleNumber(RichTextBox textBox, char character) {
@@ -72,24 +101,6 @@ public static class InputHandler {
             TextEditor.AddAction(textBox, selectedLine, character);
             for (int i = 1; i < selectionCount - 1; i++) {
                 TextEditor.AddAction(textBox, selectedLine + i, character);
-            }
-        }
-        TextSelection.UpdateTextBox(textBox);
-    }
-
-    static void HandleCommentStart(RichTextBox textBox, char character) {
-        int selectedLine = TextSelection.Line;
-        int selectionCount = TextSelection.Count;
-        if (Lines.IsComment(textBox, selectedLine)) {
-            TextEditor.RemoveComment(textBox, selectedLine);
-            for (int i = 1; i < selectionCount - 1; i++) {
-                TextEditor.RemoveComment(textBox, selectedLine + i);
-            }
-        }
-        else {
-            TextEditor.AddComment(textBox, selectedLine);
-            for (int i = 1; i < selectionCount - 1; i++) {
-                TextEditor.AddComment(textBox, selectedLine + i);
             }
         }
         TextSelection.UpdateTextBox(textBox);

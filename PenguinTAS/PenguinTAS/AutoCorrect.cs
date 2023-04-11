@@ -7,9 +7,14 @@ public static class AutoCorrect {
         Seperator
     }
 
-    // TODO: Check for duplicate and/or exclusive actions!
+    public static void Correct(RichTextBox textBox) {
+
+    }
+
+    // TODO: Check for exclusive actions!
     public static bool IsValidLine(string lineText) {
         ExpectedChar expectedChar = ExpectedChar.Number;
+        List<char> actions = new();
         foreach (var character in lineText) {
             switch (expectedChar) {
                 case ExpectedChar.Number:
@@ -22,8 +27,11 @@ public static class AutoCorrect {
                     }
                     break;
                 case ExpectedChar.Action:
-                    if (!Characters.IsAction(character)) {
+                    if (!Characters.IsAction(character) || actions.Contains(character)) {
                         return false;
+                    }
+                    else {
+                        actions.Add(character);
                     }
                     expectedChar = ExpectedChar.Seperator;
                     break;
@@ -35,6 +43,6 @@ public static class AutoCorrect {
                     break;
             }
         }
-        return true;
+        return expectedChar == ExpectedChar.Seperator;
     }
 }

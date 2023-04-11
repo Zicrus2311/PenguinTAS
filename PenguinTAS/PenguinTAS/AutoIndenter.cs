@@ -22,7 +22,7 @@ public static class AutoIndenter {
                 textBox.SelectionIndent = 0;
             }
             else {
-                string numberString = textBox.Lines[i].Split(',')[0].Trim();
+                string numberString = Lines.NumberPart(textBox, i);
                 if (numberString.Length > 0 && int.Parse(numberString) > int.Parse(maxNumberString)) {
                     textBox.Text = textBox.Text.Remove(lineStart, numberString.Length)
                                                 .Insert(lineStart, maxNumberString);

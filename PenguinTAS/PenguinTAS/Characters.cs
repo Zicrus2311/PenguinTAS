@@ -8,15 +8,16 @@ public static class Characters {
     public const char infoStart = '@';
 
     static readonly char[] actions = {
-        'W',
-        'A',
-        'S',
-        'D'
+        'W', 'A', 'S', 'D'
     };
 
     static readonly char[] whitespace = {
-        ' ',
-        '\n'
+        ' ', '\n'
+    };
+
+    static readonly char[] commentSpecialChars = {
+        ' ', '.', ',', ':', ';', '!', '?', '\'', '"', '&', '_',
+        '(', ')', '-', '+', '/', '*', '=', '%', '<', '>', '~'
     };
 
     public static bool IsAction(RichTextBox textBox, int index) {
@@ -45,7 +46,15 @@ public static class Characters {
         return character >= '0' && character <= '9';
     }
 
+    public static bool IsAllowedInComments(char character) {
+        return IsLetter(character) || IsNumber(character) || commentSpecialChars.Contains(character);
+    }
+
     public static char UpperCase(char character) {
         return character.ToString().ToUpper()[0];
+    }
+
+    static bool IsLetter(char character) {
+        return UpperCase(character) >= 'A' && UpperCase(character) <= 'Z';
     }
 }

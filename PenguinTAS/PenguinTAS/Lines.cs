@@ -41,6 +41,14 @@ public static class Lines {
         return hasNumberPart ? splitLine[0] : string.Empty;
     }
 
+    public static char[] Actions(RichTextBox textBox, int line) {
+        string[] splitLine = GetText(textBox, line).Split(Characters.numberSeperator);
+        bool hasActions = !IsComment(textBox, line) && splitLine.Length > 1;
+        string actionsPart = hasActions ? splitLine[1] : string.Empty;
+        string actions = string.Concat(actionsPart.Split(Characters.actionSeperator));
+        return actions.ToCharArray();
+    }
+
     public static int EditPosition(RichTextBox textBox, int line) {
         if(IsComment(textBox, line)) {
             return Length(textBox, line);

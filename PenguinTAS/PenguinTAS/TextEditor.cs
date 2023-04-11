@@ -35,6 +35,29 @@ public static class TextEditor {
         }
     }
 
+    public static void AddAction(RichTextBox textBox, int line, char action) {
+        char[] actions = Lines.Actions(textBox, line);
+        int index = Lines.End(textBox, line);
+        if (!actions.Contains(action)) {
+            char seperator = actions.Length == 0 ? Characters.numberSeperator : Characters.actionSeperator;
+            Insert(textBox, index, $"{seperator}{action}");
+        }
+    }
+
+    public static void RemoveAction(RichTextBox textBox, int line, char action) {
+        char[] actions = Lines.Actions(textBox, line);
+        if (actions.Contains(action)) {
+            int indexInLine = Lines.GetText(textBox, line).IndexOf(action);
+            int startIndex = Lines.Start(textBox, line) + indexInLine;
+            if (action == actions[0] && actions.Length > 1) {
+                Remove(textBox, startIndex, "?,".Length);
+            }
+            else {
+                Remove(textBox, startIndex - ",".Length, ",?".Length);
+            }
+        }
+    }
+
     public static void Insert(RichTextBox textBox, int index, char character) {
         Insert(textBox, index, character.ToString());
     }

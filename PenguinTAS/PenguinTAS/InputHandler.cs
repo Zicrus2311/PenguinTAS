@@ -56,7 +56,25 @@ public static class InputHandler {
     }
 
     static void HandleAction(RichTextBox textBox, char character) {
-        
+        int selectedLine = TextSelection.Line;
+        int selectionCount = TextSelection.Count;
+        if (Lines.NumberPart(textBox, selectedLine).Length == 0) return;
+
+        character = Characters.UpperCase(character);
+        char[] actions = Lines.Actions(textBox, TextSelection.Line);
+        if (actions.Contains(character)) {
+            TextEditor.RemoveAction(textBox, selectedLine, character);
+            for (int i = 1; i < selectionCount - 1; i++) {
+                TextEditor.RemoveAction(textBox, selectedLine + i, character);
+            }
+        }
+        else {
+            TextEditor.AddAction(textBox, selectedLine, character);
+            for (int i = 1; i < selectionCount - 1; i++) {
+                TextEditor.AddAction(textBox, selectedLine + i, character);
+            }
+        }
+        TextSelection.UpdateTextBox(textBox);
     }
 
     static void HandleCommentStart(RichTextBox textBox, char character) {

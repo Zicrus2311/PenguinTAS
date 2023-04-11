@@ -7,13 +7,13 @@ public static class InputHandler {
             return false;
         }
         else if (Characters.IsNumber(textBox, character)) {
-
+            HandleNumber(textBox, character);
         }
         else if (Characters.IsAction(textBox, character)) {
-
+            HandleAction(textBox, character);
         }
         else if (Characters.IsCommentStart(textBox, character)) {
-
+            HandleCommentStart(textBox, character);
         }
         return true;
     }
@@ -37,6 +37,18 @@ public static class InputHandler {
                 break;
         }
         return true;
+    }
+
+    static void HandleNumber(RichTextBox textBox, char character) {
+
+    }
+
+    static void HandleAction(RichTextBox textBox, char character) {
+
+    }
+
+    static void HandleCommentStart(RichTextBox textBox, char character) {
+
     }
 
     static void HandleUp(RichTextBox textBox, KeyEventArgs e) {

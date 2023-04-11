@@ -7,6 +7,13 @@ public static class TextEditor {
         }
     }
 
+    public static void RemoveSelectedLines() {
+        TextEditor.RemoveLine(TextSelection.Line);
+        for (int i = 1; i < TextSelection.Count; i++) {
+            TextEditor.RemoveLine(TextSelection.Line);
+        }
+    }
+
     public static void RemoveLine(int line) {
         foreach (var textBox in PenguinTAS.TextBoxes) {
             RemoveLine(textBox, line);

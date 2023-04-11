@@ -10,7 +10,7 @@ namespace PenguinTAS {
             ApplicationConfiguration.Initialize();
 
             string? path = args.Length > 0 ? args[0] : null;
-            Application.Run(new Form1(path));
+            Application.Run(new PenguinTAS(path));
         }
     }
 }

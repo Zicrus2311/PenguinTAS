@@ -1,7 +1,10 @@
 namespace PenguinTAS {
-    public partial class Form1 : Form {
-        public Form1(string? path) {
+    public partial class PenguinTAS : Form {
+        public static RichTextBox[] textBoxes;
+
+        public PenguinTAS(string? path) {
             InitializeComponent();
+            textBoxes = new RichTextBox[] { richTextBox1, richTextBox2 };
             FileManager.textBox1 = richTextBox1;
             FileManager.textBox2 = richTextBox2;
             TextEditor.textBox = richTextBox1;
@@ -67,21 +70,23 @@ namespace PenguinTAS {
         }
 
         private void richTextBox1_TextChanged(object sender, EventArgs e) {
-            AutoIndenter.Indent(richTextBox1);
-            SyntaxHighlighter.Highlight(richTextBox1);
+            //BottomInfo.AddInfo(richTextBox1);
+            //AutoIndenter.Indent(richTextBox1);
+            //SyntaxHighlighter.Highlight(richTextBox1);
         }
 
         private void richTextBox2_TextChanged(object sender, EventArgs e) {
-            AutoIndenter.Indent(richTextBox2);
-            SyntaxHighlighter.Highlight(richTextBox2);
+            //BottomInfo.AddInfo(richTextBox2);
+            //AutoIndenter.Indent(richTextBox2);
+            //SyntaxHighlighter.Highlight(richTextBox2);
         }
 
         private void richTextBox1_SelectionChanged(object sender, EventArgs e) {
-            TextEditor.FixSelection();
+            //TextEditor.FixSelection();
         }
 
         private void richTextBox2_SelectionChanged(object sender, EventArgs e) {
-            TextEditor.FixSelection();
+            //TextEditor.FixSelection();
         }
     }
 }

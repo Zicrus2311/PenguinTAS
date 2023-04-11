@@ -1,5 +1,5 @@
 ﻿namespace PenguinTAS {
-    internal class AutoIndenter {
+    public static class AutoIndenter {
         const string maxNumberString = "9999";
 
         public static void Indent(RichTextBox textBox1, RichTextBox textBox2) {
@@ -15,7 +15,7 @@
                 if (textBox.Lines[i].Length == 0) continue;
 
                 int lineStart = textBox.GetFirstCharIndexFromLine(i);
-                if (textBox.Text[lineStart] == '#') {
+                if (textBox.Text[lineStart] == '#' || textBox.Text[lineStart] == '@') {
                     textBox.SelectionStart = lineStart;
                     textBox.SelectionIndent = 0;
                 }

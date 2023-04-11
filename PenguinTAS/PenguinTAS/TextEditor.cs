@@ -4,18 +4,6 @@ namespace PenguinTAS {
     public static class TextEditor {
         public static RichTextBox? textBox;
 
-        static readonly char[] allowedLetters = {
-            'W',
-            'A',
-            'S',
-            'D'
-        };
-
-        static readonly char[] whitespace = {
-            ' ',
-            '\n'
-        };
-
         public static bool HandleCharInput(KeyPressEventArgs e) {
             if (CommentSelected()) {
                 InsertBeforeSelection(e.KeyChar.ToString());
@@ -23,7 +11,7 @@ namespace PenguinTAS {
             }
 
             char character = e.KeyChar.ToString().ToUpper()[0];
-            if (IsNumber(character)) {
+            if (Characters.IsNumber(character)) {
                 int line = textBox.GetLineFromCharIndex(textBox.SelectionStart);
                 if (textBox.Lines[line].Length > 0) {
                     InsertBeforeSelection(character.ToString());
@@ -32,14 +20,14 @@ namespace PenguinTAS {
                     InsertBeforeSelection(character.ToString() + ' ');
                 }
             }
-            if (allowedLetters.Contains(character)) {
+            if (Characters.actions.Contains(character)) {
                 int line = textBox.GetLineFromCharIndex(textBox.SelectionStart);
                 if (textBox.Lines[line].Length > 0) {
                     InsertAtEndOfLine(',' + character.ToString());
                 }
             }
             if (character == '#') {
-                if (textBox.SelectionStart != 0 && !whitespace.Contains(textBox.Text[textBox.SelectionStart - 1])) {
+                if (textBox.SelectionStart != 0 && !Characters.whitespace.Contains(textBox.Text[textBox.SelectionStart - 1])) {
                     InsertAtEndOfLine("\n#");
                 }
                 else {
@@ -74,11 +62,11 @@ namespace PenguinTAS {
             }
             if (e.KeyCode == Keys.Down) {
                 int line = textBox.GetLineFromCharIndex(textBox.SelectionStart + textBox.SelectionLength);
-                if (line < textBox.Lines.Length - 1) {
+                if (line < textBox.Lines.Length - 2) {
                     line++;
                     int newIndex = textBox.GetFirstCharIndexFromLine(line);
                     if (e.Control) {
-                        while (line < textBox.Lines.Length - 1 && (textBox.Lines[line].Length == 0 || textBox.Lines[line][0] != '#')) {
+                        while (line < textBox.Lines.Length - 2 && (textBox.Lines[line].Length == 0 || textBox.Lines[line][0] != '#')) {
                             line++;
                         }
                         newIndex = textBox.GetFirstCharIndexFromLine(line);
@@ -137,7 +125,7 @@ namespace PenguinTAS {
                 return;
             }
 
-            if (IsNumber(textBox.Text[selectionStart - 1])) {
+            if (Characters.IsNumber(textBox.Text[selectionStart - 1])) {
                 textBox.Text = textBox.Text.Remove(selectionStart - 1, 1);
                 textBox.Select(selectionStart - 1, 0);
             }
@@ -177,12 +165,19 @@ namespace PenguinTAS {
         }
 
         public static void FixSelection() {
+            if (textBox.Lines.Length == 0) return;
+
             int selectionStart = textBox.SelectionStart;
             int selectionLength = textBox.SelectionLength;
+            int selectionEnd = selectionStart + selectionLength;
             int line = textBox.GetLineFromCharIndex(selectionStart);
+            int startLine = textBox.GetLineFromCharIndex(selectionStart);
+            int endLine = textBox.GetLineFromCharIndex(selectionStart + selectionLength - 1);
+            selectionStart = Math.Min(line, textBox.Text.Length - textBox.Lines[textBox.Lines.Length - 1].Length);
+            selectionEnd = Math.Min(line, textBox.Text.Length - textBox.Lines[textBox.Lines.Length - 1].Length);
+            selectionLength = selectionEnd - selectionStart;
+
             if (selectionLength > 0) {
-                int startLine = textBox.GetLineFromCharIndex(selectionStart);
-                int endLine = textBox.GetLineFromCharIndex(selectionStart + selectionLength - 1);
                 int startIndex = textBox.GetFirstCharIndexFromLine(startLine);
                 int endIndex = textBox.GetFirstCharIndexFromLine(endLine) + textBox.Lines[endLine].Length;
                 textBox.SelectionStart = startIndex;
@@ -201,10 +196,6 @@ namespace PenguinTAS {
                     textBox.SelectionStart = lineStart + splitLine[0].Trim().Length;
                 }
             }
-        }
-
-        static bool IsNumber(char character) {
-            return character >= '0' && character <= '9';
         }
     }
 }

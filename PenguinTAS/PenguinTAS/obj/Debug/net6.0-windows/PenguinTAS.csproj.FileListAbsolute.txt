@@ -40,7 +40,6 @@ E:\Repos\PenguinTAS\PenguinTAS\PenguinTAS\bin\Debug\net6.0-windows\PenguinTAS.ru
 E:\Repos\PenguinTAS\PenguinTAS\PenguinTAS\bin\Debug\net6.0-windows\PenguinTAS.dll
 E:\Repos\PenguinTAS\PenguinTAS\PenguinTAS\bin\Debug\net6.0-windows\PenguinTAS.pdb
 E:\Repos\PenguinTAS\PenguinTAS\PenguinTAS\obj\Debug\net6.0-windows\PenguinTAS.csproj.AssemblyReference.cache
-E:\Repos\PenguinTAS\PenguinTAS\PenguinTAS\obj\Debug\net6.0-windows\PenguinTAS.Form1.resources
 E:\Repos\PenguinTAS\PenguinTAS\PenguinTAS\obj\Debug\net6.0-windows\PenguinTAS.Properties.Resources.resources
 E:\Repos\PenguinTAS\PenguinTAS\PenguinTAS\obj\Debug\net6.0-windows\PenguinTAS.csproj.GenerateResource.cache
 E:\Repos\PenguinTAS\PenguinTAS\PenguinTAS\obj\Debug\net6.0-windows\PenguinTAS.GeneratedMSBuildEditorConfig.editorconfig
@@ -52,3 +51,4 @@ E:\Repos\PenguinTAS\PenguinTAS\PenguinTAS\obj\Debug\net6.0-windows\refint\Pengui
 E:\Repos\PenguinTAS\PenguinTAS\PenguinTAS\obj\Debug\net6.0-windows\PenguinTAS.pdb
 E:\Repos\PenguinTAS\PenguinTAS\PenguinTAS\obj\Debug\net6.0-windows\PenguinTAS.genruntimeconfig.cache
 E:\Repos\PenguinTAS\PenguinTAS\PenguinTAS\obj\Debug\net6.0-windows\ref\PenguinTAS.dll
+E:\Repos\PenguinTAS\PenguinTAS\PenguinTAS\obj\Debug\net6.0-windows\PenguinTAS.PenguinTAS.resources

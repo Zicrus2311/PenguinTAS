@@ -1,5 +1,5 @@
 ﻿namespace PenguinTAS {
-    partial class Form1 {
+    partial class PenguinTAS {
         /// <summary>
         ///  Required designer variable.
         /// </summary>

@@ -13,7 +13,10 @@
                 if (textBox.Lines[i].Length == 0) continue;
 
                 int lineStart = textBox.GetFirstCharIndexFromLine(i);
-                if (textBox.Text[lineStart] == '#') {
+                if (textBox.Text[lineStart] == '@') {
+                    SetColor(textBox, lineStart, textBox.Lines[i].Length, Color.Orange);
+                }
+                else if (textBox.Text[lineStart] == '#') {
                     SetColor(textBox, lineStart, textBox.Lines[i].Length, Color.LightGreen);
                 }
                 else {

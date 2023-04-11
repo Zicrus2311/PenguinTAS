@@ -16,76 +16,70 @@ namespace PenguinTAS {
             }
         }
 
-        private void newToolStripMenuItem_Click(object sender, EventArgs e) {
+        private void Menu_New(object sender, EventArgs e) {
             FileManager.New();
         }
 
-        private void openToolStripMenuItem_Click(object sender, EventArgs e) {
+        private void Menu_Open(object sender, EventArgs e) {
             FileManager.Open();
         }
 
-        private void saveToolStripMenuItem_Click(object sender, EventArgs e) {
+        private void Menu_Save(object sender, EventArgs e) {
             FileManager.Save();
         }
 
-        private void saveAsToolStripMenuItem_Click(object sender, EventArgs e) {
+        private void Menu_SaveAs(object sender, EventArgs e) {
             FileManager.SaveAs();
         }
 
-        private void exitToolStripMenuItem_Click(object sender, EventArgs e) {
+        private void Menu_Exit(object sender, EventArgs e) {
             Application.Exit();
         }
 
-        private void undoToolStripMenuItem_Click(object sender, EventArgs e) {
+        private void Menu_Undo(object sender, EventArgs e) {
             //richTextBox1.Undo();
         }
 
-        private void redoToolStripMenuItem_Click(object sender, EventArgs e) {
+        private void Menu_Redo(object sender, EventArgs e) {
             //richTextBox1.Redo();
         }
 
-        private void cutToolStripMenuItem_Click(object sender, EventArgs e) {
+        private void Menu_Cut(object sender, EventArgs e) {
             //richTextBox1.Cut();
         }
 
-        private void copyToolStripMenuItem_Click(object sender, EventArgs e) {
+        private void Menu_Copy(object sender, EventArgs e) {
             //richTextBox1.Copy();
         }
 
-        private void pasteToolStripMenuItem_Click(object sender, EventArgs e) {
+        private void Menu_Paste(object sender, EventArgs e) {
             //richTextBox1.Paste();
         }
 
-        private void selectAllToolStripMenuItem_Click(object sender, EventArgs e) {
+        private void Menu_SelectAll(object sender, EventArgs e) {
             richTextBox1.SelectAll();
             SyntaxHighlighter.Highlight(richTextBox1, richTextBox2);
         }
 
-        private void richTextBox1_KeyPress(object sender, KeyPressEventArgs e) {
+        private void TextBox_KeyPress(object sender, KeyPressEventArgs e) {
+            RichTextBox textBox = (RichTextBox)sender;
             e.Handled = TextEditor.HandleCharInput(e);
         }
 
-        private void richTextBox1_KeyDown(object sender, KeyEventArgs e) {
+        private void TextBox_KeyDown(object sender, KeyEventArgs e) {
+            RichTextBox textBox = (RichTextBox)sender;
             e.Handled = TextEditor.HandleKeyInput(e);
         }
 
-        private void richTextBox1_TextChanged(object sender, EventArgs e) {
-            //BottomInfo.AddInfo(richTextBox1);
-            //AutoIndenter.Indent(richTextBox1);
-            //SyntaxHighlighter.Highlight(richTextBox1);
+        private void TextBox_TextChanged(object sender, EventArgs e) {
+            RichTextBox textBox = (RichTextBox)sender;
+            //BottomInfo.AddInfo(textBox);
+            //AutoIndenter.Indent(textBox);
+            //SyntaxHighlighter.Highlight(textBox);
         }
 
-        private void richTextBox2_TextChanged(object sender, EventArgs e) {
-            //BottomInfo.AddInfo(richTextBox2);
-            //AutoIndenter.Indent(richTextBox2);
-            //SyntaxHighlighter.Highlight(richTextBox2);
-        }
-
-        private void richTextBox1_SelectionChanged(object sender, EventArgs e) {
-            //TextEditor.FixSelection();
-        }
-
-        private void richTextBox2_SelectionChanged(object sender, EventArgs e) {
+        private void TextBox_SelectionChanged(object sender, EventArgs e) {
+            RichTextBox textBox = (RichTextBox)sender;
             //TextEditor.FixSelection();
         }
     }

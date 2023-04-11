@@ -6,10 +6,6 @@ public partial class PenguinTAS : Form {
     public PenguinTAS(string? path) {
         InitializeComponent();
         TextBoxes = new RichTextBox[] { richTextBox1, richTextBox2 };
-        // TODO: Remove this!
-        //FileManager.textBox1 = richTextBox1;
-        //FileManager.textBox2 = richTextBox2;
-        //TextEditor.textBox = richTextBox1;
         if (path != null) {
             FileManager.OpenPath(path);
         }

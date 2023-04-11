@@ -1,23 +1,20 @@
 ﻿namespace PenguinTAS;
 
 public static class FileManager {
-    public static RichTextBox? textBox1;
-    public static RichTextBox? textBox2;
-
     static string? currentPath = null;
 
     public static void New() {
-        textBox1!.Text = "#Player 1";
-        textBox2!.Text = "#Player 2";
-        SyntaxHighlighter.Highlight(textBox1, textBox2);
+        for (int i = 0; i < PenguinTAS.TextBoxes.Length; i++) {
+            PenguinTAS.TextBoxes[i].Text = $"{Characters.commentStart}Player {i + 1}";
+        }
         currentPath = null;
     }
 
     public static void OpenPath(string path) {
-        string[] text = File.ReadAllText(path).Split('|');
-        textBox1!.Text = text[0];
-        textBox2!.Text = text[1];
-        SyntaxHighlighter.Highlight(textBox1, textBox2);
+        string fileText = File.ReadAllText(path);
+        for (int i = 0; i < PenguinTAS.TextBoxes.Length; i++) {
+            PenguinTAS.TextBoxes[i].Text = GetPlayerText(fileText, i);
+        }
         currentPath = path;
     }
 
@@ -26,11 +23,7 @@ public static class FileManager {
         ofd.Filter = "TAS Files (.2tas)|*.2tas";
         ofd.Title = "Open...";
         if (ofd.ShowDialog() == DialogResult.OK) {
-            string[] text = File.ReadAllText(ofd.FileName).Split('|');
-            textBox1!.Text = text[0];
-            textBox2!.Text = text[1];
-            SyntaxHighlighter.Highlight(textBox1, textBox2);
-            currentPath = ofd.FileName;
+            OpenPath(ofd.FileName);
         }
     }
 
@@ -40,16 +33,36 @@ public static class FileManager {
             return;
         }
 
-        File.WriteAllText(currentPath, textBox1!.Text + '|' + textBox2!.Text);
+        string fileText = MergeTextBoxText();
+        File.WriteAllText(currentPath, fileText);
     }
 
     public static void SaveAs() {
         SaveFileDialog sfd = new();
         sfd.Filter = "TAS Files (.2tas)|*.2tas";
-        sfd.Title = "Save...";
+        sfd.Title = "Save As...";
         if (sfd.ShowDialog() == DialogResult.OK) {
-            File.WriteAllText(sfd.FileName, textBox1!.Text + '|' + textBox2!.Text);
+            string fileText = MergeTextBoxText();
+            File.WriteAllText(sfd.FileName, fileText);
             currentPath = sfd.FileName;
         }
+    }
+
+    static string GetPlayerText(string fileText, int player) {
+        string[] splitFile = fileText.Split(Characters.playerSeperator);
+        return splitFile.Length > player ? splitFile[player] : string.Empty;
+    }
+
+    static string MergeTextBoxText() {
+        string fileText = string.Empty;
+        for (int i = 0; i < PenguinTAS.TextBoxes.Length; i++) {
+            fileText += PenguinTAS.TextBoxes[i].Text;
+
+            bool lastPlayer = i == PenguinTAS.TextBoxes.Length - 1;
+            if (!lastPlayer) {
+                fileText += Characters.playerSeperator;
+            }
+        }
+        return fileText;
     }
 }

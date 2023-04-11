@@ -3,16 +3,19 @@
 public static class InputHandler {
     public static bool HandleCharInput(RichTextBox textBox, KeyPressEventArgs e) {
         char character = e.KeyChar;
-        if (Lines.IsComment(textBox, TextSelection.Line)) {
+        if (character == Characters.playerSeperator) {
+            return true;
+        }
+        else if (Lines.IsComment(textBox, TextSelection.Line)) {
             return false;
         }
-        else if (Characters.IsNumber(textBox, character)) {
+        else if (Characters.IsNumber(character)) {
             HandleNumber(textBox, character);
         }
-        else if (Characters.IsAction(textBox, character)) {
+        else if (Characters.IsAction(character)) {
             HandleAction(textBox, character);
         }
-        else if (Characters.IsCommentStart(textBox, character)) {
+        else if (character == Characters.commentStart) {
             HandleCommentStart(textBox, character);
         }
         return true;

@@ -6,6 +6,7 @@ public partial class PenguinTAS : Form {
     public PenguinTAS(string? path) {
         InitializeComponent();
         TextBoxes = new RichTextBox[] { richTextBox1, richTextBox2 };
+        // TODO: Remove this!
         //FileManager.textBox1 = richTextBox1;
         //FileManager.textBox2 = richTextBox2;
         //TextEditor.textBox = richTextBox1;
@@ -58,8 +59,8 @@ public partial class PenguinTAS : Form {
     }
 
     private void Menu_SelectAll(object sender, EventArgs e) {
-        richTextBox1.SelectAll();
-        SyntaxHighlighter.Highlight(richTextBox1, richTextBox2);
+        //richTextBox1.SelectAll();
+        //SyntaxHighlighter.Highlight(richTextBox1, richTextBox2);
     }
 
     private void TextBox_KeyPress(object sender, KeyPressEventArgs e) {

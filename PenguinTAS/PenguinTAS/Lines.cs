@@ -11,11 +11,11 @@ public static class Lines {
 
     public static bool IsComment(RichTextBox textBox, int line) {
         string lineText = GetText(textBox, line);
-        return lineText.Length > 0 && Characters.IsCommentStart(lineText[0]);
+        return lineText.Length > 0 && lineText[0] == Characters.commentStart;
     }
 
     public static string GetText(RichTextBox textBox, int line) {
-        return textBox.Lines.Length > line ? textBox.Lines[line] : "";
+        return textBox.Lines.Length > line ? textBox.Lines[line] : string.Empty;
     }
 
     public static int Start(RichTextBox textBox, int line) {
@@ -33,6 +33,6 @@ public static class Lines {
     public static string NumberPart(RichTextBox textBox, int line) {
         string[] splitLine = GetText(textBox, line).Split(Characters.numberSeperator);
         bool hasNumberPart = !IsComment(textBox, line) && splitLine.Length > 0;
-        return hasNumberPart ? splitLine[0] : "";
+        return hasNumberPart ? splitLine[0] : string.Empty;
     }
 }

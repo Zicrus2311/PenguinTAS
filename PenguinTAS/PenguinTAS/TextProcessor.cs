@@ -12,4 +12,10 @@ public static class TextProcessor {
         AutoIndenter.Indent(textBox);
         SyntaxHighlighter.Highlight(textBox);
     }
+
+    public static void ProcessLine(RichTextBox textBox, int line) {
+        AutoCorrect.CorrectLine(textBox, line);
+        AutoIndenter.IndentLine(textBox, line);
+        SyntaxHighlighter.HighlightLine(textBox, line);
+    }
 }

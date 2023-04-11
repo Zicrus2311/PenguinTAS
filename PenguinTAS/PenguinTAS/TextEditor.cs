@@ -24,6 +24,7 @@ public static class TextEditor {
         int index = Lines.Start(textBox, line);
         if (!Lines.IsComment(textBox, line)) {
             Insert(textBox, index, Characters.commentStart);
+            SyncComments(textBox, line);
         }
     }
 
@@ -32,6 +33,7 @@ public static class TextEditor {
         string lineText = Lines.GetText(textBox, line);
         if (Lines.IsComment(textBox, line) && AutoCorrect.IsValidLine(lineText[1..])) {
             Remove(textBox, index, 1);
+            SyncComments(textBox, line);
         }
     }
 
@@ -73,6 +75,40 @@ public static class TextEditor {
         int start = Math.Clamp(index, 0, textBox.TextLength - 1);
         int end = Math.Clamp(index + length, 0, textBox.TextLength);
         textBox.Text = textBox.Text.Remove(start, end - start);
+    }
+
+    public static void SyncNumbers(RichTextBox textBox, int line) {
+        string number = Lines.NumberPart(textBox, line);
+        foreach (var box in PenguinTAS.TextBoxes) {
+            int start = Lines.Start(box, line);
+            string numberPart = Lines.NumberPart(box, line);
+            Remove(box, start, numberPart.Length);
+            Insert(box, start, number);
+        }
+    }
+
+    public static void SyncComments(RichTextBox textBox, int line) {
+        if (Lines.IsComment(textBox, line)) {
+            foreach (var box in PenguinTAS.TextBoxes) {
+                if (!Lines.IsComment(box, line)) {
+                    int start = Lines.Start(box, line);
+                    Insert(box, start, Characters.commentStart);
+                }
+            }
+        }
+        else {
+            foreach (var box in PenguinTAS.TextBoxes) {
+                if (Lines.IsComment(box, line)) {
+                    int start = Lines.Start(box, line);
+                    if (AutoCorrect.IsValidLine(Lines.GetText(box, line)[1..])) {
+                        Remove(box, start, 1);
+                    }
+                    else {
+                        Remove(box, start, Lines.Length(box, line));
+                    }
+                }
+            }
+        }
     }
 
     static void AddLine(RichTextBox textBox, int prevLine, string text) {

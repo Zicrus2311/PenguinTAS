@@ -11,6 +11,10 @@ public static class AutoCorrect {
 
     }
 
+    public static void CorrectLine(RichTextBox textBox, int line) {
+
+    }
+
     // TODO: Check for exclusive actions!
     public static bool IsValidLine(string lineText) {
         ExpectedChar expectedChar = ExpectedChar.Number;

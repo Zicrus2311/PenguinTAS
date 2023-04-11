@@ -11,21 +11,25 @@ public static class SyntaxHighlighter {
         int selectionLength = textBox.SelectionLength;
 
         for (int i = 0; i < textBox.Lines.Length; i++) {
-            if (textBox.Lines[i].Length == 0) continue;
-
-            int lineStart = textBox.GetFirstCharIndexFromLine(i);
-            if (textBox.Text[lineStart] == '@') {
-                SetColor(textBox, lineStart, textBox.Lines[i].Length, Color.Orange);
-            }
-            else if (textBox.Text[lineStart] == '#') {
-                SetColor(textBox, lineStart, textBox.Lines[i].Length, Color.LightGreen);
-            }
-            else {
-                SetColor(textBox, lineStart, textBox.Lines[i].Length, Color.White);
-            }
+            HighlightLine(textBox, i);
         }
 
         textBox.Select(selectionStart, selectionLength);
+    }
+
+    public static void HighlightLine(RichTextBox textBox, int line) {
+        if (textBox.Lines[line].Length == 0) return;
+
+        int lineStart = textBox.GetFirstCharIndexFromLine(line);
+        if (textBox.Text[lineStart] == '@') {
+            SetColor(textBox, lineStart, textBox.Lines[line].Length, Color.Orange);
+        }
+        else if (textBox.Text[lineStart] == '#') {
+            SetColor(textBox, lineStart, textBox.Lines[line].Length, Color.LightGreen);
+        }
+        else {
+            SetColor(textBox, lineStart, textBox.Lines[line].Length, Color.White);
+        }
     }
 
     static void SetColor(RichTextBox textBox, int start, int length, Color color) {

@@ -18,7 +18,6 @@ public static class InputHandler {
         else if (Characters.IsAction(character)) {
             HandleAction(textBox, character);
         }
-        TextProcessor.Process(textBox);
         return true;
     }
 
@@ -40,7 +39,6 @@ public static class InputHandler {
                 HandleDelete(textBox, e);
                 break;
         }
-        TextProcessor.Process(textBox);
         return true;
     }
 
@@ -81,6 +79,7 @@ public static class InputHandler {
         int editPos = Lines.EditPosition(textBox, TextSelection.Line);
         int index = Lines.Start(textBox, TextSelection.Line) + editPos;
         TextEditor.Insert(textBox, index, character);
+        TextEditor.SyncNumbers(textBox, TextSelection.Line);
         TextSelection.UpdateTextBox(textBox);
     }
 
@@ -136,6 +135,8 @@ public static class InputHandler {
         if (editPos > 0) {
             int lineStart = Lines.Start(textBox, TextSelection.Line);
             TextEditor.Remove(textBox, lineStart + editPos - 1, 1);
+            TextEditor.SyncComments(textBox, TextSelection.Line);
+            TextEditor.SyncNumbers(textBox, TextSelection.Line);
             TextSelection.UpdateTextBox(textBox);
         }
         else {

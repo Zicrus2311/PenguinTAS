@@ -1,27 +1,51 @@
-﻿namespace PenguinTAS {
-    public static class Characters {
-        public static readonly char[] actions = {
-            'W',
-            'A',
-            'S',
-            'D'
-        };
+﻿namespace PenguinTAS;
 
-        public static readonly char[] whitespace = {
-            ' ',
-            '\n'
-        };
+public static class Characters {
+    static readonly char[] actions = {
+        'W',
+        'A',
+        'S',
+        'D'
+    };
 
-        public static readonly char[] comment = {
-            '#'
-        };
+    static readonly char[] whitespace = {
+        ' ',
+        '\n'
+    };
 
-        public static readonly char[] info = {
-            '@'
-        };
+    static readonly char[] comment = {
+        '#'
+    };
 
-        public static bool IsNumber(char character) {
-            return character >= '0' && character <= '9';
-        }
+    static readonly char[] info = {
+        '@'
+    };
+
+    public static bool IsAction(char character) {
+        char upperChar = UpperCase(character);
+        return actions.Contains(upperChar);
+    }
+
+    public static bool IsWhitespace(char character) {
+        char upperChar = UpperCase(character);
+        return whitespace.Contains(upperChar);
+    }
+
+    public static bool IsCommentStart(char character) {
+        char upperChar = UpperCase(character);
+        return comment.Contains(upperChar);
+    }
+
+    public static bool IsInfoStart(char character) {
+        char upperChar = UpperCase(character);
+        return info.Contains(upperChar);
+    }
+
+    public static bool IsNumber(char character) {
+        return character >= '0' && character <= '9';
+    }
+
+    public static char UpperCase(char character) {
+        return character.ToString().ToUpper()[0];
     }
 }

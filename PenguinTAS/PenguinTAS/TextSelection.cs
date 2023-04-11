@@ -1,13 +1,13 @@
-﻿namespace PenguinTAS {
-    public static class TextSelection {
-        static int selectedLine;
+﻿namespace PenguinTAS;
 
-        public static void SelectLine(int line) {
-            selectedLine = line;
-        }
+public static class TextSelection {
+    static int selectedLine;
 
-        static void UpdateTextBox(RichTextBox textBox) {
+    public static void SelectLine(int line) {
+        selectedLine = line;
+    }
 
-        }
+    static void UpdateTextBox(RichTextBox textBox) {
+
     }
 }

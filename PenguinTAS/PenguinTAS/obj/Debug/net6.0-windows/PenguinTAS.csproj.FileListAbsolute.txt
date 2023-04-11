@@ -52,3 +52,4 @@ E:\Repos\PenguinTAS\PenguinTAS\PenguinTAS\obj\Debug\net6.0-windows\PenguinTAS.pd
 E:\Repos\PenguinTAS\PenguinTAS\PenguinTAS\obj\Debug\net6.0-windows\PenguinTAS.genruntimeconfig.cache
 E:\Repos\PenguinTAS\PenguinTAS\PenguinTAS\obj\Debug\net6.0-windows\ref\PenguinTAS.dll
 E:\Repos\PenguinTAS\PenguinTAS\PenguinTAS\obj\Debug\net6.0-windows\PenguinTAS.PenguinTAS.resources
+D:\Repos\PenguinTAS\PenguinTAS\PenguinTAS\obj\Debug\net6.0-windows\PenguinTAS.PenguinTAS.resources

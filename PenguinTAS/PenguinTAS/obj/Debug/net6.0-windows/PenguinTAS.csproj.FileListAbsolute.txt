@@ -22,7 +22,6 @@ D:\Repos\PenguinTAS\PenguinTAS\PenguinTAS\bin\Debug\net6.0-windows\PenguinTAS.ru
 D:\Repos\PenguinTAS\PenguinTAS\PenguinTAS\bin\Debug\net6.0-windows\PenguinTAS.dll
 D:\Repos\PenguinTAS\PenguinTAS\PenguinTAS\bin\Debug\net6.0-windows\PenguinTAS.pdb
 D:\Repos\PenguinTAS\PenguinTAS\PenguinTAS\obj\Debug\net6.0-windows\PenguinTAS.csproj.AssemblyReference.cache
-D:\Repos\PenguinTAS\PenguinTAS\PenguinTAS\obj\Debug\net6.0-windows\PenguinTAS.Form1.resources
 D:\Repos\PenguinTAS\PenguinTAS\PenguinTAS\obj\Debug\net6.0-windows\PenguinTAS.Properties.Resources.resources
 D:\Repos\PenguinTAS\PenguinTAS\PenguinTAS\obj\Debug\net6.0-windows\PenguinTAS.csproj.GenerateResource.cache
 D:\Repos\PenguinTAS\PenguinTAS\PenguinTAS\obj\Debug\net6.0-windows\PenguinTAS.GeneratedMSBuildEditorConfig.editorconfig

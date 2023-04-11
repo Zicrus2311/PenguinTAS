@@ -29,4 +29,10 @@ public static class Lines {
     public static int End(RichTextBox textBox, int line) {
         return Start(textBox, line) + Length(textBox, line);
     }
+    
+    public static string NumberPart(RichTextBox textBox, int line) {
+        string[] splitLine = GetText(textBox, line).Split(Characters.numberSeperator);
+        bool hasNumberPart = !IsComment(textBox, line) && splitLine.Length > 0;
+        return hasNumberPart ? splitLine[0] : "";
+    }
 }

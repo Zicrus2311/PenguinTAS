@@ -1,6 +1,7 @@
 ﻿namespace PenguinTAS;
 
 public static class AutoIndenter {
+    // TODO: Do this in AutoCorrect
     const string maxNumberString = "9999";
 
     public static void Indent(RichTextBox textBox1, RichTextBox textBox2) {

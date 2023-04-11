@@ -19,14 +19,14 @@ public static class TextEditor {
                 InsertBeforeSelection(character.ToString() + ' ');
             }
         }
-        if (Characters.actions.Contains(character)) {
+        if (Characters.IsAction(character)) {
             int line = textBox.GetLineFromCharIndex(textBox.SelectionStart);
             if (textBox.Lines[line].Length > 0) {
                 InsertAtEndOfLine(',' + character.ToString());
             }
         }
         if (character == '#') {
-            if (textBox.SelectionStart != 0 && !Characters.whitespace.Contains(textBox.Text[textBox.SelectionStart - 1])) {
+            if (textBox.SelectionStart != 0 && !Characters.IsWhitespace(textBox, textBox.SelectionStart - 1)) {
                 InsertAtEndOfLine("\n#");
             }
             else {

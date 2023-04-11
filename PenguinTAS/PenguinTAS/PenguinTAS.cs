@@ -1,11 +1,11 @@
 namespace PenguinTAS;
 
 public partial class PenguinTAS : Form {
-    public static RichTextBox[] textBoxes = Array.Empty<RichTextBox>();
+    public static RichTextBox[] TextBoxes { get; private set; } = Array.Empty<RichTextBox>();
 
     public PenguinTAS(string? path) {
         InitializeComponent();
-        textBoxes = new RichTextBox[] { richTextBox1, richTextBox2 };
+        TextBoxes = new RichTextBox[] { richTextBox1, richTextBox2 };
         //FileManager.textBox1 = richTextBox1;
         //FileManager.textBox2 = richTextBox2;
         //TextEditor.textBox = richTextBox1;

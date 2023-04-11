@@ -33,7 +33,8 @@ public static class TextSelection {
 
     static void UpdateTextBoxCaret(RichTextBox textBox) {
         int start = Lines.Start(textBox, Line);
-        textBox.SelectionStart = start;
+        int editPos = Lines.EditPosition(textBox, Line);
+        textBox.SelectionStart = start + editPos;
         textBox.SelectionLength = 0;
     }
 

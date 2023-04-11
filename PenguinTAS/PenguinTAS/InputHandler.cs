@@ -68,7 +68,16 @@ public static class InputHandler {
     }
 
     static void HandleBack(RichTextBox textBox, KeyEventArgs e) {
-
+        int editPos = Lines.EditPosition(textBox, TextSelection.Line);
+        if (editPos > 0) {
+            int lineStart = Lines.Start(textBox, TextSelection.Line);
+            TextEditor.Remove(textBox, lineStart + editPos - 1, 1);
+            TextSelection.SelectLine(TextSelection.Line);
+        }
+        else {
+            TextEditor.RemoveLine(TextSelection.Line);
+            TextSelection.SelectLine(TextSelection.Line - 1);
+        }
     }
 
     static void HandleDelete(RichTextBox textBox, KeyEventArgs e) {

@@ -35,4 +35,13 @@ public static class Lines {
         bool hasNumberPart = !IsComment(textBox, line) && splitLine.Length > 0;
         return hasNumberPart ? splitLine[0] : string.Empty;
     }
+
+    public static int EditPosition(RichTextBox textBox, int line) {
+        if(IsComment(textBox, line)) {
+            return Length(textBox, line);
+        }
+        else {
+            return NumberPart(textBox, line).Length;
+        }
+    }
 }

@@ -19,7 +19,7 @@ public static class Lines {
     }
 
     public static int Start(RichTextBox textBox, int line) {
-        return textBox.GetFirstCharIndexFromLine(line);
+        return textBox.Lines.Length > line ? textBox.GetFirstCharIndexFromLine(line) : 0;
     }
 
     public static int Length(RichTextBox textBox, int line) {

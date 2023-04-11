@@ -63,7 +63,8 @@ public static class InputHandler {
     }
 
     static void HandleReturn(RichTextBox textBox, KeyEventArgs e) {
-
+        TextEditor.AddLine(TextSelection.Line);
+        TextSelection.SelectLine(TextSelection.Line + 1);
     }
 
     static void HandleBack(RichTextBox textBox, KeyEventArgs e) {
@@ -71,6 +72,7 @@ public static class InputHandler {
     }
 
     static void HandleDelete(RichTextBox textBox, KeyEventArgs e) {
-
+        TextEditor.RemoveLine(TextSelection.Line);
+        TextSelection.SelectLine(TextSelection.Line - 1);
     }
 }

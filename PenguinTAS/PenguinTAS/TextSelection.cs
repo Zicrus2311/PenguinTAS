@@ -5,7 +5,7 @@ public static class TextSelection {
     public static int Count { get; private set; }
 
     public static void SelectLine(int line) {
-        Line = line;
+        Line = Math.Max(line, 0);
         Count = 0;
         UpdateTextBoxes();
     }
@@ -33,6 +33,8 @@ public static class TextSelection {
 
     static void UpdateTextBoxCaret(RichTextBox textBox) {
         int start = Lines.Start(textBox, Line);
+        textBox.SelectionStart = start;
+        textBox.SelectionLength = 0;
     }
 
     static void UpdateTextBoxSelection(RichTextBox textBox) {

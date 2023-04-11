@@ -140,7 +140,7 @@
             // 
             this.undoButton.Name = "undoButton";
             this.undoButton.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Z)));
-            this.undoButton.Size = new System.Drawing.Size(180, 22);
+            this.undoButton.Size = new System.Drawing.Size(164, 22);
             this.undoButton.Text = "Undo";
             this.undoButton.Click += new System.EventHandler(this.Menu_Undo);
             // 
@@ -148,20 +148,20 @@
             // 
             this.redoButton.Name = "redoButton";
             this.redoButton.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Y)));
-            this.redoButton.Size = new System.Drawing.Size(180, 22);
+            this.redoButton.Size = new System.Drawing.Size(164, 22);
             this.redoButton.Text = "Redo";
             this.redoButton.Click += new System.EventHandler(this.Menu_Redo);
             // 
             // editMenuSeperator1
             // 
             this.editMenuSeperator1.Name = "editMenuSeperator1";
-            this.editMenuSeperator1.Size = new System.Drawing.Size(177, 6);
+            this.editMenuSeperator1.Size = new System.Drawing.Size(161, 6);
             // 
             // cutButton
             // 
             this.cutButton.Name = "cutButton";
             this.cutButton.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.X)));
-            this.cutButton.Size = new System.Drawing.Size(180, 22);
+            this.cutButton.Size = new System.Drawing.Size(164, 22);
             this.cutButton.Text = "Cut";
             this.cutButton.Click += new System.EventHandler(this.Menu_Cut);
             // 
@@ -169,7 +169,7 @@
             // 
             this.copyButton.Name = "copyButton";
             this.copyButton.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.C)));
-            this.copyButton.Size = new System.Drawing.Size(180, 22);
+            this.copyButton.Size = new System.Drawing.Size(164, 22);
             this.copyButton.Text = "Copy";
             this.copyButton.Click += new System.EventHandler(this.Menu_Copy);
             // 
@@ -177,20 +177,20 @@
             // 
             this.pasteButton.Name = "pasteButton";
             this.pasteButton.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.V)));
-            this.pasteButton.Size = new System.Drawing.Size(180, 22);
+            this.pasteButton.Size = new System.Drawing.Size(164, 22);
             this.pasteButton.Text = "Paste";
             this.pasteButton.Click += new System.EventHandler(this.Menu_Paste);
             // 
             // editMenuSeperator2
             // 
             this.editMenuSeperator2.Name = "editMenuSeperator2";
-            this.editMenuSeperator2.Size = new System.Drawing.Size(177, 6);
+            this.editMenuSeperator2.Size = new System.Drawing.Size(161, 6);
             // 
             // selectButton
             // 
             this.selectButton.Name = "selectButton";
             this.selectButton.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.A)));
-            this.selectButton.Size = new System.Drawing.Size(180, 22);
+            this.selectButton.Size = new System.Drawing.Size(164, 22);
             this.selectButton.Text = "Select All";
             this.selectButton.Click += new System.EventHandler(this.Menu_SelectAll);
             // 
@@ -207,10 +207,9 @@
             this.textBox1.TabIndex = 1;
             this.textBox1.Text = "";
             this.textBox1.WordWrap = false;
-            this.textBox1.SelectionChanged += new System.EventHandler(this.TextBox_SelectionChanged);
-            this.textBox1.TextChanged += new System.EventHandler(this.TextBox_TextChanged);
             this.textBox1.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TextBox_KeyDown);
             this.textBox1.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TextBox_KeyPress);
+            this.textBox1.MouseUp += new System.Windows.Forms.MouseEventHandler(this.TextBox_MouseUp);
             // 
             // textBox2
             // 
@@ -225,10 +224,9 @@
             this.textBox2.TabIndex = 2;
             this.textBox2.Text = "";
             this.textBox2.WordWrap = false;
-            this.textBox2.SelectionChanged += new System.EventHandler(this.TextBox_SelectionChanged);
-            this.textBox2.TextChanged += new System.EventHandler(this.TextBox_TextChanged);
             this.textBox2.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TextBox_KeyDown);
             this.textBox2.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TextBox_KeyPress);
+            this.textBox2.MouseUp += new System.Windows.Forms.MouseEventHandler(this.TextBox_MouseUp);
             // 
             // tableLayoutPanel1
             // 

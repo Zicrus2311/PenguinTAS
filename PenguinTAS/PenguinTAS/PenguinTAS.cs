@@ -69,11 +69,8 @@ public partial class PenguinTAS : Form {
         e.Handled = InputHandler.HandleKeyInput(textBox, e);
     }
 
-    private void TextBox_TextChanged(object sender, EventArgs e) {
+    private void TextBox_MouseUp(object sender, MouseEventArgs e) {
         RichTextBox textBox = (RichTextBox)sender;
-    }
-
-    private void TextBox_SelectionChanged(object sender, EventArgs e) {
-        RichTextBox textBox = (RichTextBox)sender;
+        TextSelection.CorrectSelection(textBox);
     }
 }

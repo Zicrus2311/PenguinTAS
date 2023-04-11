@@ -4,22 +4,34 @@ public static class TextSelection {
     public static int Line { get; private set; }
     public static int Count { get; private set; }
 
-    public static void SelectLine(int line) {
-        Line = Math.Max(line, 0);
-        Count = 0;
-        UpdateTextBoxes();
-    }
-
-    public static void SelectLines(int startLine, int endLine) {
-        Line = startLine;
-        Count = endLine - startLine + 1;
-        UpdateTextBoxes();
-    }
-
-    static void UpdateTextBoxes() {
-        foreach (var textBox in PenguinTAS.TextBoxes) {
-            UpdateTextBox(textBox);
+    public static void CorrectSelection(RichTextBox textBox) {
+        int start = textBox.SelectionStart;
+        int length = textBox.SelectionLength;
+        if (length > 0) {
+            int end = start + length - 1;
+            int startLine = Lines.GetFromIndex(textBox, start);
+            int endLine = Lines.GetFromIndex(textBox, end);
+            if (Lines.Length(textBox, endLine + 1) == 0) endLine++;
+            SelectLines(textBox, startLine, endLine);
         }
+        else {
+            int line = Lines.GetFromIndex(textBox, start);
+            SelectLine(textBox, line);
+        }
+        UpdateTextBox(textBox);
+    }
+
+    public static void SelectLine(RichTextBox textBox, int line) {
+        Line = Math.Clamp(line, 0, Lines.Count(textBox) - 1);
+        Count = 0;
+        UpdateTextBox(textBox);
+    }
+
+    public static void SelectLines(RichTextBox textBox, int startLine, int endLine) {
+        Line = Math.Clamp(startLine, 0, Lines.Count(textBox) - 1);
+        int end = Math.Clamp(endLine, 0, Lines.Count(textBox));
+        Count = Math.Max(end - Line + 1, 0);
+        UpdateTextBox(textBox);
     }
 
     static void UpdateTextBox(RichTextBox textBox) {
@@ -40,7 +52,7 @@ public static class TextSelection {
 
     static void UpdateTextBoxSelection(RichTextBox textBox) {
         int start = Lines.Start(textBox, Line);
-        int end = Lines.Start(textBox, Line + Count) - "\n?".Length;
+        int end = Lines.Start(textBox, Line + Count) - "\n".Length;
         textBox.SelectionStart = start;
         textBox.SelectionLength = end - start;
     }

@@ -3,10 +3,10 @@
 public static class Lines {
     public static int Count(RichTextBox textBox) {
         // TODO: Remove this!
-        if(textBox.Lines.Length != textBox.Text.Split('\n').Length + 1) {
-            MessageBox.Show($"Lines: {textBox.Lines.Length}, Custom: {textBox.Text.Split('\n').Length + 1}");
+        if(textBox.Lines.Length != textBox.Text.Split('\n').Length) {
+            //MessageBox.Show($"Lines: {textBox.Lines.Length}, Custom: {textBox.Text.Split('\n').Length}");
         }
-        return textBox.Text.Split('\n').Length + 1;
+        return textBox.Text.Split('\n').Length;
     }
 
     public static bool IsComment(RichTextBox textBox, int line) {
@@ -19,7 +19,8 @@ public static class Lines {
     }
 
     public static int Start(RichTextBox textBox, int line) {
-        return textBox.Lines.Length > line ? textBox.GetFirstCharIndexFromLine(line) : 0;
+        int oobIndex = Count(textBox) > line ? textBox.TextLength : textBox.TextLength + "\n".Length;
+        return textBox.Lines.Length > line ? textBox.GetFirstCharIndexFromLine(line) : oobIndex;
     }
 
     public static int Length(RichTextBox textBox, int line) {
@@ -29,7 +30,11 @@ public static class Lines {
     public static int End(RichTextBox textBox, int line) {
         return Start(textBox, line) + Length(textBox, line);
     }
-    
+
+    public static int GetFromIndex(RichTextBox textBox, int index) {
+        return textBox.GetLineFromCharIndex(index);
+    }
+
     public static string NumberPart(RichTextBox textBox, int line) {
         string[] splitLine = GetText(textBox, line).Split(Characters.numberSeperator);
         bool hasNumberPart = !IsComment(textBox, line) && splitLine.Length > 0;

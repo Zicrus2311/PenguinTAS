@@ -6,6 +6,9 @@ public static class InputHandler {
         if (character == Characters.playerSeperator) {
             return true;
         }
+        if (character == Characters.commentStart) {
+            HandleCommentStart(textBox, character);
+        }
         else if (Lines.IsComment(textBox, TextSelection.Line)) {
             return false;
         }
@@ -14,9 +17,6 @@ public static class InputHandler {
         }
         else if (Characters.IsAction(character)) {
             HandleAction(textBox, character);
-        }
-        else if (character == Characters.commentStart) {
-            HandleCommentStart(textBox, character);
         }
         return true;
     }
@@ -51,20 +51,34 @@ public static class InputHandler {
     }
 
     static void HandleCommentStart(RichTextBox textBox, char character) {
-
+        int selectedLine = TextSelection.Line;
+        int selectionCount = TextSelection.Count;
+        if (Lines.IsComment(textBox, selectedLine)) {
+            TextEditor.RemoveComment(textBox, selectedLine);
+            for (int i = 1; i < selectionCount - 1; i++) {
+                TextEditor.RemoveComment(textBox, selectedLine + i);
+            }
+        }
+        else {
+            TextEditor.AddComment(textBox, selectedLine);
+            for (int i = 1; i < selectionCount - 1; i++) {
+                TextEditor.AddComment(textBox, selectedLine + i);
+            }
+        }
+        TextSelection.SelectLines(textBox, selectedLine, selectedLine + selectionCount - 1);
     }
 
     static void HandleUp(RichTextBox textBox, KeyEventArgs e) {
-
+        TextSelection.SelectLine(textBox, TextSelection.Line - 1);
     }
 
     static void HandleDown(RichTextBox textBox, KeyEventArgs e) {
-
+        TextSelection.SelectLine(textBox, TextSelection.Line + 1);
     }
 
     static void HandleReturn(RichTextBox textBox, KeyEventArgs e) {
         TextEditor.AddLine(TextSelection.Line);
-        TextSelection.SelectLine(TextSelection.Line + 1);
+        TextSelection.SelectLine(textBox, TextSelection.Line + 1);
     }
 
     static void HandleBack(RichTextBox textBox, KeyEventArgs e) {
@@ -72,16 +86,16 @@ public static class InputHandler {
         if (editPos > 0) {
             int lineStart = Lines.Start(textBox, TextSelection.Line);
             TextEditor.Remove(textBox, lineStart + editPos - 1, 1);
-            TextSelection.SelectLine(TextSelection.Line);
+            TextSelection.SelectLine(textBox, TextSelection.Line);
         }
         else {
             TextEditor.RemoveLine(TextSelection.Line);
-            TextSelection.SelectLine(TextSelection.Line - 1);
+            TextSelection.SelectLine(textBox, TextSelection.Line - 1);
         }
     }
 
     static void HandleDelete(RichTextBox textBox, KeyEventArgs e) {
         TextEditor.RemoveLine(TextSelection.Line);
-        TextSelection.SelectLine(TextSelection.Line - 1);
+        TextSelection.SelectLine(textBox, TextSelection.Line - 1);
     }
 }

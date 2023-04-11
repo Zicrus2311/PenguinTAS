@@ -13,6 +13,25 @@ public static class TextEditor {
         }
     }
 
+    public static void AddComment(RichTextBox textBox, int line) {
+        int index = Lines.Start(textBox, line);
+        if (!Lines.IsComment(textBox, line)) {
+            Insert(textBox, index, Characters.commentStart);
+        }
+    }
+
+    public static void RemoveComment(RichTextBox textBox, int line) {
+        int index = Lines.Start(textBox, line);
+        string lineText = Lines.GetText(textBox, line);
+        if (Lines.IsComment(textBox, line) && AutoCorrect.IsValidLine(lineText[1..])) {
+            Remove(textBox, index, 1);
+        }
+    }
+
+    public static void Insert(RichTextBox textBox, int index, char character) {
+        Insert(textBox, index, character.ToString());
+    }
+
     public static void Insert(RichTextBox textBox, int index, string text) {
         int start = Math.Clamp(index, 0, textBox.TextLength);
         textBox.Text = textBox.Text.Insert(start, text);

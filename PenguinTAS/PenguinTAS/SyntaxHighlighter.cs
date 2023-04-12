@@ -17,7 +17,7 @@ public static class SyntaxHighlighter {
         textBox.Select(selectionStart, selectionLength);
     }
 
-    public static void HighlightLine(RichTextBox textBox, int line) {
+    static void HighlightLine(RichTextBox textBox, int line) {
         if (textBox.Lines[line].Length == 0) return;
 
         int lineStart = textBox.GetFirstCharIndexFromLine(line);

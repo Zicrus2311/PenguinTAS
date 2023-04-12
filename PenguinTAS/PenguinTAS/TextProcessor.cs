@@ -8,14 +8,13 @@ public static class TextProcessor {
     }
 
     public static void Process(RichTextBox textBox) {
-        AutoCorrect.Correct(textBox);
-        AutoIndenter.Indent(textBox);
-        SyntaxHighlighter.Highlight(textBox);
-    }
+        RichTextBox tempBox = PenguinTAS.TempBox!;
 
-    public static void ProcessLine(RichTextBox textBox, int line) {
-        AutoCorrect.CorrectLine(textBox, line);
-        AutoIndenter.IndentLine(textBox, line);
-        SyntaxHighlighter.HighlightLine(textBox, line);
+        tempBox.Rtf = textBox.Rtf;
+        AutoCorrect.Correct(tempBox);
+        AutoIndenter.Indent(tempBox);
+        SyntaxHighlighter.Highlight(tempBox);
+        textBox.Rtf = tempBox.Rtf;
+        TextSelection.UpdateTextBox(textBox);
     }
 }

@@ -45,6 +45,8 @@ public static class TextEditor {
         int? targetNumber = null;
         foreach (var box in PenguinTAS.TextBoxes) {
             string lineText = Lines.GetText(box, line);
+            if (lineText.Length == 0) continue;
+
             if (AutoCorrect.IsValidLine(lineText[1..])) {
                 int number = lineText.Length > 1 ? int.Parse(Lines.NumberPart(lineText[1..])) : -1;
                 canRemoveLine &= number == targetNumber || targetNumber == null;

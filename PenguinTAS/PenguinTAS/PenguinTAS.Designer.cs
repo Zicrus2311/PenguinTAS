@@ -43,6 +43,7 @@
             this.textBox1 = new System.Windows.Forms.RichTextBox();
             this.textBox2 = new System.Windows.Forms.RichTextBox();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
+            this.tempBox = new System.Windows.Forms.RichTextBox();
             this.menuStrip.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
             this.SuspendLayout();
@@ -247,12 +248,24 @@
             this.tableLayoutPanel1.Size = new System.Drawing.Size(800, 426);
             this.tableLayoutPanel1.TabIndex = 3;
             // 
+            // tempBox
+            // 
+            this.tempBox.Location = new System.Drawing.Point(0, 0);
+            this.tempBox.Name = "tempBox";
+            this.tempBox.Size = new System.Drawing.Size(10, 10);
+            this.tempBox.TabIndex = 4;
+            this.tempBox.TabStop = false;
+            this.tempBox.Text = "";
+            this.tempBox.Visible = false;
+            this.tempBox.WordWrap = false;
+            // 
             // PenguinTAS
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(40)))), ((int)(((byte)(40)))));
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.tempBox);
             this.Controls.Add(this.tableLayoutPanel1);
             this.Controls.Add(this.menuStrip);
             this.ForeColor = System.Drawing.Color.White;
@@ -289,5 +302,6 @@
         private ToolStripMenuItem selectButton;
         private RichTextBox textBox2;
         private TableLayoutPanel tableLayoutPanel1;
+        private RichTextBox tempBox;
     }
 }

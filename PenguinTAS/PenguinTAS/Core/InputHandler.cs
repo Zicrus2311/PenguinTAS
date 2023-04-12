@@ -1,4 +1,6 @@
-﻿namespace PenguinTAS;
+﻿using PenguinTAS.Editing;
+
+namespace PenguinTAS;
 
 public static class InputHandler {
     public static bool HandleCharInput(RichTextBox textBox, KeyPressEventArgs e) {
@@ -8,18 +10,22 @@ public static class InputHandler {
             return true;
         }
         else if (character == Characters.commentStart) {
+            EditHistory.RecordState();
             HandleCommentStart(textBox, character);
             TextProcessor.ProcessAll();
         }
         else if (Lines.IsComment(textBox, TextSelection.Line) && TextSelection.Count == 0) {
+            EditHistory.RecordState();
             HandleCommentText(textBox, character);
             TextProcessor.ProcessAll();
         }
         else if (Characters.IsNumber(character)) {
+            EditHistory.RecordState();
             HandleNumber(textBox, character);
             TextProcessor.ProcessAll();
         }
         else if (Characters.IsAction(character)) {
+            EditHistory.RecordState();
             HandleAction(textBox, character);
             TextProcessor.ProcessAll();
         }
@@ -38,14 +44,17 @@ public static class InputHandler {
                 HandleDown(textBox, e);
                 break;
             case Keys.Return:
+                EditHistory.RecordState();
                 HandleReturn(textBox, e);
                 TextProcessor.ProcessAll();
                 break;
             case Keys.Back:
+                EditHistory.RecordState();
                 HandleBack(textBox, e);
                 TextProcessor.ProcessAll();
                 break;
             case Keys.Delete:
+                EditHistory.RecordState();
                 HandleDelete(textBox, e);
                 TextProcessor.ProcessAll();
                 break;

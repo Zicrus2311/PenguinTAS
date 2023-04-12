@@ -34,6 +34,12 @@ public static class TextSelection {
         UpdateTextBox(textBox);
     }
 
+    public static void UpdateTextBoxes() {
+        foreach (var box in PenguinTAS.TextBoxes) {
+            UpdateTextBox(box);
+        }
+    }
+
     public static void UpdateTextBox(RichTextBox textBox) {
         if (Count > 0) {
             UpdateTextBoxSelection(textBox);

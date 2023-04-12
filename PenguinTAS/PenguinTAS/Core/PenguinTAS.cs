@@ -1,3 +1,4 @@
+using PenguinTAS.Editing;
 using System.Diagnostics;
 
 namespace PenguinTAS;
@@ -39,11 +40,11 @@ public partial class PenguinTAS : Form {
     }
 
     private void Menu_Undo(object sender, EventArgs e) {
-        //richTextBox1.Undo();
+        EditHistory.Undo();
     }
 
     private void Menu_Redo(object sender, EventArgs e) {
-        //richTextBox1.Redo();
+        EditHistory.Redo();
     }
 
     private void Menu_Cut(object sender, EventArgs e) {

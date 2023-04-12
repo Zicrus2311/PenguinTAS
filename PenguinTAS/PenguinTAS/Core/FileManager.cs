@@ -13,9 +13,7 @@ public static class FileManager {
 
     public static void OpenPath(string path) {
         string fileText = File.ReadAllText(path);
-        for (int i = 0; i < PenguinTAS.TextBoxes.Length; i++) {
-            PenguinTAS.TextBoxes[i].Text = GetPlayerText(fileText, i);
-        }
+        ApplyFileText(fileText);
         currentPath = path;
         TextProcessor.ProcessAll();
     }
@@ -50,12 +48,13 @@ public static class FileManager {
         }
     }
 
-    static string GetPlayerText(string fileText, int player) {
-        string[] splitFile = fileText.Split(Characters.playerSeperator);
-        return splitFile.Length > player ? splitFile[player] : string.Empty;
+    public static void ApplyFileText(string fileText) {
+        for (int i = 0; i < PenguinTAS.TextBoxes.Length; i++) {
+            PenguinTAS.TextBoxes[i].Text = GetPlayerText(fileText, i);
+        }
     }
 
-    static string MergeTextBoxText() {
+    public static string MergeTextBoxText() {
         string fileText = string.Empty;
         for (int i = 0; i < PenguinTAS.TextBoxes.Length; i++) {
             fileText += PenguinTAS.TextBoxes[i].Text;
@@ -66,5 +65,10 @@ public static class FileManager {
             }
         }
         return fileText;
+    }
+
+    static string GetPlayerText(string fileText, int player) {
+        string[] splitFile = fileText.Split(Characters.playerSeperator);
+        return splitFile.Length > player ? splitFile[player] : string.Empty;
     }
 }

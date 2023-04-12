@@ -15,7 +15,6 @@ public static class AutoCorrect {
 
     }
 
-    // TODO: Check for exclusive actions!
     public static bool IsValidLine(string lineText) {
         ExpectedChar expectedChar = ExpectedChar.Number;
         List<char> actions = new();

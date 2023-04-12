@@ -11,6 +11,10 @@ public static class Lines {
 
     public static bool IsComment(RichTextBox textBox, int line) {
         string lineText = GetText(textBox, line);
+        return IsComment(lineText);
+    }
+
+    public static bool IsComment(string lineText) {
         return lineText.Length > 0 && lineText[0] == Characters.commentStart;
     }
 
@@ -36,8 +40,13 @@ public static class Lines {
     }
 
     public static string NumberPart(RichTextBox textBox, int line) {
-        string[] splitLine = GetText(textBox, line).Split(Characters.numberSeperator);
-        bool hasNumberPart = !IsComment(textBox, line) && splitLine.Length > 0;
+        string lineText = GetText(textBox, line);
+        return NumberPart(lineText);
+    }
+
+    public static string NumberPart(string lineText) {
+        string[] splitLine = lineText.Split(Characters.numberSeperator);
+        bool hasNumberPart = !IsComment(lineText) && splitLine.Length > 0;
         return hasNumberPart ? splitLine[0] : string.Empty;
     }
 

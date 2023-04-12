@@ -42,9 +42,17 @@ public static class TextEditor {
 
     static bool CanRemoveComment(int line) {
         bool canRemoveLine = true;
+        int? targetNumber = null;
         foreach (var box in PenguinTAS.TextBoxes) {
             string lineText = Lines.GetText(box, line);
-            canRemoveLine &= AutoCorrect.IsValidLine(lineText[1..]);
+            if (AutoCorrect.IsValidLine(lineText[1..])) {
+                int number = lineText.Length > 1 ? int.Parse(Lines.NumberPart(lineText[1..])) : -1;
+                canRemoveLine &= number == targetNumber || targetNumber == null;
+                targetNumber = number;
+            }
+            else {
+                canRemoveLine = false;
+            }
         }
         return canRemoveLine;
     }

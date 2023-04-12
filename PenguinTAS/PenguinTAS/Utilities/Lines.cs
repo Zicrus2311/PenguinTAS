@@ -2,10 +2,6 @@
 
 public static class Lines {
     public static int Count(RichTextBox textBox) {
-        // TODO: Remove this!
-        if(textBox.Lines.Length != textBox.Text.Split('\n').Length) {
-            //MessageBox.Show($"Lines: {textBox.Lines.Length}, Custom: {textBox.Text.Split('\n').Length}");
-        }
         return textBox.Text.Split('\n').Length;
     }
 

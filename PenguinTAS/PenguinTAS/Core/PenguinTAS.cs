@@ -60,7 +60,6 @@ public partial class PenguinTAS : Form {
 
     private void Menu_SelectAll(object sender, EventArgs e) {
         //richTextBox1.SelectAll();
-        //SyntaxHighlighter.Highlight(richTextBox1, richTextBox2);
     }
 
     private void Menu_Documentation(object sender, EventArgs e) {

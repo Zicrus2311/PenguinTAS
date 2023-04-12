@@ -16,7 +16,8 @@ public static class Characters {
         '<', // Swing Left
         '>', // Swing Right
         'F', // Freeze
-        'Q', // Quit To Menu
+        'M', // Menu Reload
+        'Q', // Quit Reload
         'U', // Menu Up
         'D', // Menu Down
         'C'  // Confirm

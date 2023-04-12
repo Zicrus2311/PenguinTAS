@@ -1,6 +1,8 @@
 ﻿namespace PenguinTAS;
 
 public static class BottomInfo {
+    const float physicsFramerate = 50;
+
     public static void UpdateInfo(Label label) {
         if (PenguinTAS.TextBoxes.Length == 0) return;
 
@@ -12,6 +14,8 @@ public static class BottomInfo {
             totalFrames += frames;
         }
 
-        label.Text = $"Total frame count: {totalFrames}";
+        TimeSpan time = TimeSpan.FromMilliseconds(totalFrames / physicsFramerate * 1000);
+        string timeText = time.ToString("mm':'ss'.'ff");
+        label.Text = $"Total frame count: {totalFrames} ({timeText})";
     }
 }

@@ -1,6 +1,3 @@
-using PenguinTAS.Editing;
-using System.Diagnostics;
-
 namespace PenguinTAS;
 
 public partial class PenguinTAS : Form {
@@ -48,15 +45,19 @@ public partial class PenguinTAS : Form {
     }
 
     private void Menu_Cut(object sender, EventArgs e) {
-        //richTextBox1.Cut();
+        Clipboard.Cut();
     }
 
     private void Menu_Copy(object sender, EventArgs e) {
-        //richTextBox1.Copy();
+        Clipboard.Copy();
     }
 
     private void Menu_Paste(object sender, EventArgs e) {
-        //richTextBox1.Paste();
+        Clipboard.Paste();
+    }
+
+    private void Menu_Duplicate(object sender, EventArgs e) {
+        Clipboard.Duplicate();
     }
 
     private void Menu_SelectAll(object sender, EventArgs e) {

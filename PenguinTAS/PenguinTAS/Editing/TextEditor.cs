@@ -8,9 +8,9 @@ public static class TextEditor {
     }
 
     public static void RemoveSelectedLines() {
-        TextEditor.RemoveLine(TextSelection.Line);
+        RemoveLine(TextSelection.Line);
         for (int i = 1; i < TextSelection.Count; i++) {
-            TextEditor.RemoveLine(TextSelection.Line);
+            RemoveLine(TextSelection.Line);
         }
     }
 

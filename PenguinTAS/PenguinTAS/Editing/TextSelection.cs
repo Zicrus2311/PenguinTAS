@@ -34,6 +34,14 @@ public static class TextSelection {
         UpdateTextBox(textBox);
     }
 
+    public static string GetSelectedLinesText(RichTextBox textBox) {
+        string text = Lines.GetText(textBox, Line);
+        for (int i = 1; i < Count; i++) {
+            text += $"\n{Lines.GetText(textBox, Line + i)}";
+        }
+        return text.TrimEnd('\n');
+    }
+
     public static void UpdateTextBoxes() {
         foreach (var box in PenguinTAS.TextBoxes) {
             UpdateTextBox(box);

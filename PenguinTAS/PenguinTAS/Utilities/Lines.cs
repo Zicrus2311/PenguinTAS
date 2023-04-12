@@ -14,6 +14,15 @@ public static class Lines {
         return lineText.Length > 0 && lineText[0] == Characters.commentStart;
     }
 
+    public static bool IsEmpty(int line) {
+        foreach (var box in PenguinTAS.TextBoxes) {
+            if (GetText(box, line).Length > 0) {
+                return false;
+            }
+        }
+        return true;
+    }
+
     public static string GetText(RichTextBox textBox, int line) {
         return textBox.Lines.Length > line ? textBox.Lines[line] : string.Empty;
     }

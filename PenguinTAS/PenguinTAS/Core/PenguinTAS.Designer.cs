@@ -50,6 +50,7 @@
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.tempBox = new System.Windows.Forms.RichTextBox();
             this.infoLabel = new System.Windows.Forms.Label();
+            this.duplicateToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
             this.SuspendLayout();
@@ -136,6 +137,7 @@
             this.toolStripMenuItem4,
             this.toolStripMenuItem5,
             this.toolStripMenuItem6,
+            this.duplicateToolStripMenuItem,
             this.toolStripSeparator2,
             this.toolStripMenuItem7});
             this.toolStripMenuItem1.ForeColor = System.Drawing.Color.White;
@@ -331,6 +333,14 @@
             this.infoLabel.TabIndex = 5;
             this.infoLabel.Text = "Info";
             // 
+            // duplicateToolStripMenuItem
+            // 
+            this.duplicateToolStripMenuItem.Name = "duplicateToolStripMenuItem";
+            this.duplicateToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.D)));
+            this.duplicateToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.duplicateToolStripMenuItem.Text = "Duplicate";
+            this.duplicateToolStripMenuItem.Click += new System.EventHandler(this.Menu_Duplicate);
+            // 
             // PenguinTAS
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
@@ -382,5 +392,6 @@
         private ToolStripMenuItem discordToolStripMenuItem;
         private ToolStripTextBox toolStripTextBox1;
         private ToolStripSeparator toolStripSeparator3;
+        private ToolStripMenuItem duplicateToolStripMenuItem;
     }
 }

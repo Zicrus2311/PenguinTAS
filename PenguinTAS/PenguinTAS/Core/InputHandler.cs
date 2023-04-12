@@ -1,6 +1,4 @@
-﻿using PenguinTAS.Editing;
-
-namespace PenguinTAS;
+﻿namespace PenguinTAS;
 
 public static class InputHandler {
     public static bool HandleCharInput(RichTextBox textBox, KeyPressEventArgs e) {

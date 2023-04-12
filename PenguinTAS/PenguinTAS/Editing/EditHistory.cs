@@ -1,4 +1,4 @@
-﻿namespace PenguinTAS.Editing;
+﻿namespace PenguinTAS;
 
 public static class EditHistory {
     const int savedEdits = 100;

@@ -3,6 +3,7 @@
 public static class InputHandler {
     public static bool HandleCharInput(RichTextBox textBox, KeyPressEventArgs e) {
         char character = e.KeyChar;
+        int scroll = TextBoxView.GetScroll(textBox);
         if (character == Characters.playerSeperator) {
             return true;
         }
@@ -22,10 +23,13 @@ public static class InputHandler {
             HandleAction(textBox, character);
             TextProcessor.ProcessAll();
         }
+        TextBoxView.SetScroll(textBox, scroll);
+        TextSelection.UpdateTextBox(textBox);
         return true;
     }
 
     public static bool HandleKeyInput(RichTextBox textBox, KeyEventArgs e) {
+        int scroll = TextBoxView.GetScroll(textBox);
         switch (e.KeyCode) {
             case Keys.Up:
                 HandleUp(textBox, e);
@@ -46,6 +50,8 @@ public static class InputHandler {
                 TextProcessor.ProcessAll();
                 break;
         }
+        TextBoxView.SetScroll(textBox, scroll);
+        TextSelection.UpdateTextBox(textBox);
         return true;
     }
 

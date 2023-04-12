@@ -10,11 +10,13 @@ public static class TextProcessor {
     public static void Process(RichTextBox textBox) {
         RichTextBox tempBox = PenguinTAS.TempBox!;
 
+        float zoom = textBox.ZoomFactor;
         tempBox.Rtf = textBox.Rtf;
         AutoCorrect.Correct(tempBox);
         AutoIndenter.Indent(tempBox);
         SyntaxHighlighter.Highlight(tempBox);
         textBox.Rtf = tempBox.Rtf;
+        textBox.ZoomFactor = zoom;
         TextSelection.UpdateTextBox(textBox);
     }
 }

@@ -44,6 +44,7 @@
             this.textBox2 = new System.Windows.Forms.RichTextBox();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.tempBox = new System.Windows.Forms.RichTextBox();
+            this.textBox3 = new System.Windows.Forms.TextBox();
             this.menuStrip.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
             this.SuspendLayout();
@@ -204,7 +205,7 @@
             this.textBox1.Location = new System.Drawing.Point(3, 3);
             this.textBox1.Name = "textBox1";
             this.textBox1.ShortcutsEnabled = false;
-            this.textBox1.Size = new System.Drawing.Size(394, 420);
+            this.textBox1.Size = new System.Drawing.Size(394, 397);
             this.textBox1.TabIndex = 1;
             this.textBox1.Text = "";
             this.textBox1.WordWrap = false;
@@ -223,29 +224,32 @@
             this.textBox2.Location = new System.Drawing.Point(403, 3);
             this.textBox2.Name = "textBox2";
             this.textBox2.ShortcutsEnabled = false;
-            this.textBox2.Size = new System.Drawing.Size(394, 420);
+            this.textBox2.Size = new System.Drawing.Size(394, 397);
             this.textBox2.TabIndex = 2;
             this.textBox2.Text = "";
             this.textBox2.WordWrap = false;
             this.textBox2.ContentsResized += new System.Windows.Forms.ContentsResizedEventHandler(this.TextBox_ContentsResized);
+            this.textBox2.VScroll += new System.EventHandler(this.TextBox_Scroll);
             this.textBox2.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TextBox_KeyDown);
             this.textBox2.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TextBox_KeyPress);
             this.textBox2.MouseUp += new System.Windows.Forms.MouseEventHandler(this.TextBox_MouseUp);
             // 
             // tableLayoutPanel1
             // 
+            this.tableLayoutPanel1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.tableLayoutPanel1.ColumnCount = 2;
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel1.Controls.Add(this.textBox1, 0, 0);
             this.tableLayoutPanel1.Controls.Add(this.textBox2, 1, 0);
-            this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 24);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 1;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(800, 426);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(800, 403);
             this.tableLayoutPanel1.TabIndex = 3;
             // 
             // tempBox
@@ -261,12 +265,21 @@
             this.tempBox.Visible = false;
             this.tempBox.WordWrap = false;
             // 
+            // textBox3
+            // 
+            this.textBox3.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.textBox3.Location = new System.Drawing.Point(0, 427);
+            this.textBox3.Name = "textBox3";
+            this.textBox3.Size = new System.Drawing.Size(800, 23);
+            this.textBox3.TabIndex = 0;
+            // 
             // PenguinTAS
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(40)))), ((int)(((byte)(40)))));
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.textBox3);
             this.Controls.Add(this.tempBox);
             this.Controls.Add(this.tableLayoutPanel1);
             this.Controls.Add(this.menuStrip);
@@ -305,5 +318,6 @@
         private RichTextBox textBox2;
         private TableLayoutPanel tableLayoutPanel1;
         private RichTextBox tempBox;
+        private TextBox textBox3;
     }
 }

@@ -20,21 +20,33 @@ public static class TextEditor {
         }
     }
 
-    public static void AddComment(RichTextBox textBox, int line) {
-        int index = Lines.Start(textBox, line);
-        if (!Lines.IsComment(textBox, line)) {
-            Insert(textBox, index, Characters.commentStart);
-            SyncComments(textBox, line);
+    public static void AddComment(int line) {
+        foreach (var box in PenguinTAS.TextBoxes) {
+            int index = Lines.Start(box, line);
+            if (!Lines.IsComment(box, line)) {
+                Insert(box, index, Characters.commentStart);
+            }
         }
     }
 
-    public static void RemoveComment(RichTextBox textBox, int line) {
-        int index = Lines.Start(textBox, line);
-        string lineText = Lines.GetText(textBox, line);
-        if (Lines.IsComment(textBox, line) && AutoCorrect.IsValidLine(lineText[1..])) {
-            Remove(textBox, index, 1);
-            SyncComments(textBox, line);
+    public static void RemoveComment(int line) {
+        if (!CanRemoveComment(line)) return;
+
+        foreach (var box in PenguinTAS.TextBoxes) {
+            if (Lines.IsComment(box, line)) {
+                int index = Lines.Start(box, line);
+                Remove(box, index, 1);
+            }
         }
+    }
+
+    static bool CanRemoveComment(int line) {
+        bool canRemoveLine = true;
+        foreach (var box in PenguinTAS.TextBoxes) {
+            string lineText = Lines.GetText(box, line);
+            canRemoveLine &= AutoCorrect.IsValidLine(lineText[1..]);
+        }
+        return canRemoveLine;
     }
 
     public static void AddAction(RichTextBox textBox, int line, char action) {
@@ -84,30 +96,6 @@ public static class TextEditor {
             string numberPart = Lines.NumberPart(box, line);
             Remove(box, start, numberPart.Length);
             Insert(box, start, number);
-        }
-    }
-
-    public static void SyncComments(RichTextBox textBox, int line) {
-        if (Lines.IsComment(textBox, line)) {
-            foreach (var box in PenguinTAS.TextBoxes) {
-                if (!Lines.IsComment(box, line)) {
-                    int start = Lines.Start(box, line);
-                    Insert(box, start, Characters.commentStart);
-                }
-            }
-        }
-        else {
-            foreach (var box in PenguinTAS.TextBoxes) {
-                if (Lines.IsComment(box, line)) {
-                    int start = Lines.Start(box, line);
-                    if (AutoCorrect.IsValidLine(Lines.GetText(box, line)[1..])) {
-                        Remove(box, start, 1);
-                    }
-                    else {
-                        Remove(box, start, Lines.Length(box, line));
-                    }
-                }
-            }
         }
     }
 

@@ -46,15 +46,15 @@ public static class InputHandler {
         int selectedLine = TextSelection.Line;
         int selectionCount = TextSelection.Count;
         if (Lines.IsComment(textBox, selectedLine)) {
-            TextEditor.RemoveComment(textBox, selectedLine);
+            TextEditor.RemoveComment(selectedLine);
             for (int i = 1; i < selectionCount - 1; i++) {
-                TextEditor.RemoveComment(textBox, selectedLine + i);
+                TextEditor.RemoveComment(selectedLine + i);
             }
         }
         else {
-            TextEditor.AddComment(textBox, selectedLine);
+            TextEditor.AddComment(selectedLine);
             for (int i = 1; i < selectionCount - 1; i++) {
-                TextEditor.AddComment(textBox, selectedLine + i);
+                TextEditor.AddComment(selectedLine + i);
             }
         }
         TextSelection.UpdateTextBox(textBox);
@@ -132,10 +132,10 @@ public static class InputHandler {
         }
 
         int editPos = Lines.EditPosition(textBox, TextSelection.Line);
-        if (editPos > 0) {
+        bool removingComment = Lines.IsComment(textBox, TextSelection.Line) && editPos == 1;
+        if (editPos > 0 && !removingComment) {
             int lineStart = Lines.Start(textBox, TextSelection.Line);
             TextEditor.Remove(textBox, lineStart + editPos - 1, 1);
-            TextEditor.SyncComments(textBox, TextSelection.Line);
             TextEditor.SyncNumbers(textBox, TextSelection.Line);
             TextSelection.UpdateTextBox(textBox);
         }

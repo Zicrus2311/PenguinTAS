@@ -47,6 +47,7 @@ public static class AutoCorrect {
                     break;
             }
         }
-        return expectedChar == ExpectedChar.Seperator;
+        return (actions.Count == 0 && expectedChar == ExpectedChar.Number) ||
+               (actions.Count > 0 && expectedChar == ExpectedChar.Seperator);
     }
 }

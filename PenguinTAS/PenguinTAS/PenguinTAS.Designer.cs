@@ -208,6 +208,7 @@
             this.textBox1.Text = "";
             this.textBox1.WordWrap = false;
             this.textBox1.ContentsResized += new System.Windows.Forms.ContentsResizedEventHandler(this.TextBox_ContentsResized);
+            this.textBox1.VScroll += new System.EventHandler(this.TextBox_Scroll);
             this.textBox1.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TextBox_KeyDown);
             this.textBox1.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TextBox_KeyPress);
             this.textBox1.MouseUp += new System.Windows.Forms.MouseEventHandler(this.TextBox_MouseUp);

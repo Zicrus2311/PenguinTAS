@@ -61,7 +61,7 @@ public partial class PenguinTAS : Form {
     }
 
     private void Menu_SelectAll(object sender, EventArgs e) {
-        //richTextBox1.SelectAll();
+        TextSelection.SelectAll();
     }
 
     private void Menu_Documentation(object sender, EventArgs e) {

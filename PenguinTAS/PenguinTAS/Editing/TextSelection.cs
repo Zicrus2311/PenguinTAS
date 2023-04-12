@@ -34,6 +34,14 @@ public static class TextSelection {
         UpdateTextBox(textBox);
     }
 
+    public static void SelectAll() {
+        if (PenguinTAS.TextBoxes.Length == 0) return;
+
+        Line = 0;
+        Count = Lines.Count(PenguinTAS.TextBoxes[0]);
+        UpdateTextBoxes();
+    }
+
     public static string GetSelectedLinesText(RichTextBox textBox) {
         string text = Lines.GetText(textBox, Line);
         for (int i = 1; i < Count; i++) {

@@ -56,9 +56,9 @@ public static class Clipboard {
 
         int endLine = TextSelection.Line + Math.Max(TextSelection.Count - 1, 0);
         TextEditor.AddLine(endLine);
-        for (int i = 0; i < storedText.Length; i++) {
+        for (int i = 0; i < tempText.Length; i++) {
             int index = Lines.Start(PenguinTAS.TextBoxes[i], endLine + 1);
-            TextEditor.Insert(PenguinTAS.TextBoxes[i], index, storedText[i]);
+            TextEditor.Insert(PenguinTAS.TextBoxes[i], index, tempText[i]);
         }
 
         TextProcessor.ProcessAll();

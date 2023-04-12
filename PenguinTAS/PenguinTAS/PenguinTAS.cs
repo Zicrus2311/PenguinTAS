@@ -73,4 +73,14 @@ public partial class PenguinTAS : Form {
         RichTextBox textBox = (RichTextBox)sender;
         TextSelection.CorrectSelection(textBox);
     }
+
+    private void TextBox_ContentsResized(object sender, MouseEventArgs e) {
+        RichTextBox textBox = (RichTextBox)sender;
+        TextSelection.CorrectSelection(textBox);
+    }
+
+    private void TextBox_ContentsResized(object sender, ContentsResizedEventArgs e) {
+        RichTextBox textBox = (RichTextBox)sender;
+        TextBoxView.SyncZoom(textBox);
+    }
 }

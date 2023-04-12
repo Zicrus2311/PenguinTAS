@@ -1,20 +1,23 @@
 {
   "format": 1,
   "restore": {
-    "E:\\Repos\\PenguinTAS\\PenguinTAS\\PenguinTAS\\PenguinTAS.csproj": {}
+    "D:\\Repos\\PenguinTAS\\PenguinTAS\\PenguinTAS\\PenguinTAS.csproj": {}
   },
   "projects": {
-    "E:\\Repos\\PenguinTAS\\PenguinTAS\\PenguinTAS\\PenguinTAS.csproj": {
+    "D:\\Repos\\PenguinTAS\\PenguinTAS\\PenguinTAS\\PenguinTAS.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "E:\\Repos\\PenguinTAS\\PenguinTAS\\PenguinTAS\\PenguinTAS.csproj",
+        "projectUniqueName": "D:\\Repos\\PenguinTAS\\PenguinTAS\\PenguinTAS\\PenguinTAS.csproj",
         "projectName": "PenguinTAS",
-        "projectPath": "E:\\Repos\\PenguinTAS\\PenguinTAS\\PenguinTAS\\PenguinTAS.csproj",
-        "packagesPath": "C:\\Users\\bo\\.nuget\\packages\\",
-        "outputPath": "E:\\Repos\\PenguinTAS\\PenguinTAS\\PenguinTAS\\obj\\",
+        "projectPath": "D:\\Repos\\PenguinTAS\\PenguinTAS\\PenguinTAS\\PenguinTAS.csproj",
+        "packagesPath": "C:\\Users\\Bruger\\.nuget\\packages\\",
+        "outputPath": "D:\\Repos\\PenguinTAS\\PenguinTAS\\PenguinTAS\\obj\\",
         "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+        ],
         "configFilePaths": [
-          "C:\\Users\\bo\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Bruger\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [

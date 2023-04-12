@@ -207,6 +207,7 @@
             this.textBox1.TabIndex = 1;
             this.textBox1.Text = "";
             this.textBox1.WordWrap = false;
+            this.textBox1.ContentsResized += new System.Windows.Forms.ContentsResizedEventHandler(this.TextBox_ContentsResized);
             this.textBox1.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TextBox_KeyDown);
             this.textBox1.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TextBox_KeyPress);
             this.textBox1.MouseUp += new System.Windows.Forms.MouseEventHandler(this.TextBox_MouseUp);
@@ -224,6 +225,7 @@
             this.textBox2.TabIndex = 2;
             this.textBox2.Text = "";
             this.textBox2.WordWrap = false;
+            this.textBox2.ContentsResized += new System.Windows.Forms.ContentsResizedEventHandler(this.TextBox_ContentsResized);
             this.textBox2.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TextBox_KeyDown);
             this.textBox2.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TextBox_KeyPress);
             this.textBox2.MouseUp += new System.Windows.Forms.MouseEventHandler(this.TextBox_MouseUp);

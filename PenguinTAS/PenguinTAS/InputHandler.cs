@@ -8,17 +8,20 @@ public static class InputHandler {
         }
         else if (character == Characters.commentStart) {
             HandleCommentStart(textBox, character);
+            TextProcessor.ProcessAll();
         }
         else if (Lines.IsComment(textBox, TextSelection.Line) && TextSelection.Count == 0) {
             HandleCommentText(textBox, character);
+            TextProcessor.ProcessAll();
         }
         else if (Characters.IsNumber(character)) {
             HandleNumber(textBox, character);
+            TextProcessor.ProcessAll();
         }
         else if (Characters.IsAction(character)) {
             HandleAction(textBox, character);
+            TextProcessor.ProcessAll();
         }
-        TextProcessor.ProcessAll();
         return true;
     }
 
@@ -32,15 +35,17 @@ public static class InputHandler {
                 break;
             case Keys.Return:
                 HandleReturn(textBox, e);
+                TextProcessor.ProcessAll();
                 break;
             case Keys.Back:
                 HandleBack(textBox, e);
+                TextProcessor.ProcessAll();
                 break;
             case Keys.Delete:
                 HandleDelete(textBox, e);
+                TextProcessor.ProcessAll();
                 break;
         }
-        TextProcessor.ProcessAll();
         return true;
     }
 

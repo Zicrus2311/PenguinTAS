@@ -2,8 +2,8 @@
 
 public static class TextProcessor {
     public static void ProcessAll() {
-        foreach (var textBox in PenguinTAS.TextBoxes) {
-            Process(textBox);
+        foreach (var box in PenguinTAS.TextBoxes) {
+            Process(box);
         }
     }
 

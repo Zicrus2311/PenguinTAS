@@ -250,6 +250,8 @@
             // 
             // tempBox
             // 
+            this.tempBox.Font = new System.Drawing.Font("Segoe UI", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.tempBox.ForeColor = System.Drawing.Color.White;
             this.tempBox.Location = new System.Drawing.Point(0, 0);
             this.tempBox.Name = "tempBox";
             this.tempBox.Size = new System.Drawing.Size(10, 10);

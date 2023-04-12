@@ -47,7 +47,7 @@ public static class TextEditor {
             string lineText = Lines.GetText(box, line);
             if (lineText.Length == 0) continue;
 
-            if (AutoCorrect.IsValidLine(lineText[1..])) {
+            if (Validator.IsValidLine(lineText[1..])) {
                 int number = lineText.Length > 1 ? int.Parse(Lines.NumberPart(lineText[1..])) : -1;
                 canRemoveLine &= number == targetNumber || targetNumber == null;
                 targetNumber = number;

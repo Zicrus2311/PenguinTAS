@@ -1,14 +1,10 @@
 ﻿namespace PenguinTAS;
 
-public static class AutoCorrect {
+public static class Validator {
     enum ExpectedChar {
         Number,
         Action,
         Seperator
-    }
-
-    public static void Correct(RichTextBox textBox) {
-
     }
 
     public static bool IsValidLine(string lineText) {

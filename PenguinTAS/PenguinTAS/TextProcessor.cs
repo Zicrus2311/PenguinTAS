@@ -12,7 +12,6 @@ public static class TextProcessor {
 
         float zoom = textBox.ZoomFactor;
         tempBox.Rtf = textBox.Rtf;
-        AutoCorrect.Correct(tempBox);
         AutoIndenter.Indent(tempBox);
         SyntaxHighlighter.Highlight(tempBox);
         textBox.Rtf = tempBox.Rtf;

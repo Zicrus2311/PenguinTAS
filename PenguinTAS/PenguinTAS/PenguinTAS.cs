@@ -1,3 +1,5 @@
+using System.Diagnostics;
+
 namespace PenguinTAS;
 
 public partial class PenguinTAS : Form {
@@ -59,6 +61,14 @@ public partial class PenguinTAS : Form {
     private void Menu_SelectAll(object sender, EventArgs e) {
         //richTextBox1.SelectAll();
         //SyntaxHighlighter.Highlight(richTextBox1, richTextBox2);
+    }
+
+    private void Menu_Documentation(object sender, EventArgs e) {
+        WebUtilities.OpenWebsite("https://docs.google.com/document/d/1C0zamLt11Bn22bQfW1uBZbZ-W0TqkU_GBfiYHNjLufE/edit?usp=sharing");
+    }
+
+    private void Menu_Discord(object sender, EventArgs e) {
+        WebUtilities.OpenWebsite("https://discord.gg/ra2Y7TQM");
     }
 
     private void TextBox_KeyPress(object sender, KeyPressEventArgs e) {

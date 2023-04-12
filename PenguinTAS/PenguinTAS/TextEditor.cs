@@ -70,7 +70,7 @@ public static class TextEditor {
     }
 
     public static void Remove(RichTextBox textBox, int index, int length) {
-        if (textBox.TextLength == 0) return;
+        if (textBox.TextLength == 0 || length == 0) return;
 
         int start = Math.Clamp(index, 0, textBox.TextLength - 1);
         int end = Math.Clamp(index + length, 0, textBox.TextLength);

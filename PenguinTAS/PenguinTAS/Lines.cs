@@ -18,15 +18,6 @@ public static class Lines {
         return lineText.Length > 0 && lineText[0] == Characters.commentStart;
     }
 
-    public static bool IsInfo(RichTextBox textBox, int line) {
-        string lineText = GetText(textBox, line);
-        return IsInfo(lineText);
-    }
-
-    public static bool IsInfo(string lineText) {
-        return lineText.Length > 0 && lineText[0] == Characters.infoStart;
-    }
-
     public static string GetText(RichTextBox textBox, int line) {
         return textBox.Lines.Length > line ? textBox.Lines[line] : string.Empty;
     }

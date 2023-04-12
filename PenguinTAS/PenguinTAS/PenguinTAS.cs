@@ -85,4 +85,8 @@ public partial class PenguinTAS : Form {
         RichTextBox textBox = (RichTextBox)sender;
         TextBoxView.SyncScroll(textBox);
     }
+
+    private void TextBox1_TextChanged(object sender, EventArgs e) {
+        BottomInfo.UpdateInfo(infoLabel);
+    }
 }

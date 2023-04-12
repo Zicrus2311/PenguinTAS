@@ -44,7 +44,7 @@
             this.textBox2 = new System.Windows.Forms.RichTextBox();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.tempBox = new System.Windows.Forms.RichTextBox();
-            this.textBox3 = new System.Windows.Forms.TextBox();
+            this.infoLabel = new System.Windows.Forms.Label();
             this.menuStrip.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
             this.SuspendLayout();
@@ -199,18 +199,21 @@
             // textBox1
             // 
             this.textBox1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
+            this.textBox1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.textBox1.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.textBox1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.textBox1.Font = new System.Drawing.Font("Segoe UI", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.textBox1.ForeColor = System.Drawing.Color.White;
             this.textBox1.Location = new System.Drawing.Point(3, 3);
             this.textBox1.Name = "textBox1";
             this.textBox1.ShortcutsEnabled = false;
-            this.textBox1.Size = new System.Drawing.Size(394, 397);
+            this.textBox1.Size = new System.Drawing.Size(394, 385);
             this.textBox1.TabIndex = 1;
             this.textBox1.Text = "";
             this.textBox1.WordWrap = false;
             this.textBox1.ContentsResized += new System.Windows.Forms.ContentsResizedEventHandler(this.TextBox_ContentsResized);
             this.textBox1.VScroll += new System.EventHandler(this.TextBox_Scroll);
+            this.textBox1.TextChanged += new System.EventHandler(this.TextBox1_TextChanged);
             this.textBox1.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TextBox_KeyDown);
             this.textBox1.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TextBox_KeyPress);
             this.textBox1.MouseUp += new System.Windows.Forms.MouseEventHandler(this.TextBox_MouseUp);
@@ -218,13 +221,15 @@
             // textBox2
             // 
             this.textBox2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
+            this.textBox2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.textBox2.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.textBox2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.textBox2.Font = new System.Drawing.Font("Segoe UI", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.textBox2.ForeColor = System.Drawing.Color.White;
             this.textBox2.Location = new System.Drawing.Point(403, 3);
             this.textBox2.Name = "textBox2";
             this.textBox2.ShortcutsEnabled = false;
-            this.textBox2.Size = new System.Drawing.Size(394, 397);
+            this.textBox2.Size = new System.Drawing.Size(394, 385);
             this.textBox2.TabIndex = 2;
             this.textBox2.Text = "";
             this.textBox2.WordWrap = false;
@@ -249,7 +254,7 @@
             this.tableLayoutPanel1.RowCount = 1;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(800, 403);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(800, 391);
             this.tableLayoutPanel1.TabIndex = 3;
             // 
             // tempBox
@@ -265,13 +270,18 @@
             this.tempBox.Visible = false;
             this.tempBox.WordWrap = false;
             // 
-            // textBox3
+            // infoLabel
             // 
-            this.textBox3.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.textBox3.Location = new System.Drawing.Point(0, 427);
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(800, 23);
-            this.textBox3.TabIndex = 0;
+            this.infoLabel.AutoSize = true;
+            this.infoLabel.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.infoLabel.Font = new System.Drawing.Font("Segoe UI", 16.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.infoLabel.Location = new System.Drawing.Point(0, 416);
+            this.infoLabel.Margin = new System.Windows.Forms.Padding(0);
+            this.infoLabel.Name = "infoLabel";
+            this.infoLabel.Padding = new System.Windows.Forms.Padding(2, 0, 0, 4);
+            this.infoLabel.Size = new System.Drawing.Size(53, 34);
+            this.infoLabel.TabIndex = 5;
+            this.infoLabel.Text = "Info";
             // 
             // PenguinTAS
             // 
@@ -279,7 +289,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(40)))), ((int)(((byte)(40)))));
             this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Controls.Add(this.textBox3);
+            this.Controls.Add(this.infoLabel);
             this.Controls.Add(this.tempBox);
             this.Controls.Add(this.tableLayoutPanel1);
             this.Controls.Add(this.menuStrip);
@@ -318,6 +328,6 @@
         private RichTextBox textBox2;
         private TableLayoutPanel tableLayoutPanel1;
         private RichTextBox tempBox;
-        private TextBox textBox3;
+        private Label infoLabel;
     }
 }

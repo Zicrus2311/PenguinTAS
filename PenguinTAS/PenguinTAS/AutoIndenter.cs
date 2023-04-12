@@ -19,7 +19,7 @@ public static class AutoIndenter {
         if (textBox.Lines[line].Length == 0) return;
 
         int lineStart = textBox.GetFirstCharIndexFromLine(line);
-        if (!Lines.IsComment(textBox, line) && !Lines.IsInfo(textBox, line)) {
+        if (!Lines.IsComment(textBox, line)) {
             string numberString = Lines.NumberPart(textBox, line);
             if (numberString.Length > 0 && int.Parse(numberString) > int.Parse(maxNumberString)) {
                 textBox.Text = textBox.Text.Remove(lineStart, numberString.Length)

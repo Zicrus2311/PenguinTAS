@@ -16,11 +16,19 @@ public static class SyntaxHighlighter {
         if (textBox.Lines[line].Length == 0) return;
 
         int lineStart = textBox.GetFirstCharIndexFromLine(line);
-        if (textBox.Text[lineStart] == '@') {
-            SetColor(textBox, lineStart, textBox.Lines[line].Length, Color.Orange);
-        }
-        else if (textBox.Text[lineStart] == '#') {
+        if (textBox.Text[lineStart] == Characters.commentStart) {
             SetColor(textBox, lineStart, textBox.Lines[line].Length, Color.LightGreen);
+        }
+        else {
+            int numberLength = Lines.NumberPart(textBox, line).Length;
+            if (numberLength > 0) {
+                SetColor(textBox, lineStart, numberLength, Color.Orange);
+            }
+
+            int actionsLength = Lines.Length(textBox, line) - numberLength;
+            if (actionsLength > 0) {
+                SetColor(textBox, lineStart + numberLength, actionsLength, Color.LightBlue);
+            }
         }
     }
 

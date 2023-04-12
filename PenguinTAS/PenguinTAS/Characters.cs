@@ -5,7 +5,6 @@ public static class Characters {
     public const char numberSeperator = ' ';
     public const char actionSeperator = ',';
     public const char commentStart = '#';
-    public const char infoStart = '@';
 
     static readonly char[] actions = {
         'W', 'A', 'S', 'D'

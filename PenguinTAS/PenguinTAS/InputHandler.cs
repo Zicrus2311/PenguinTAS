@@ -18,6 +18,7 @@ public static class InputHandler {
         else if (Characters.IsAction(character)) {
             HandleAction(textBox, character);
         }
+        TextProcessor.ProcessAll();
         return true;
     }
 
@@ -39,6 +40,7 @@ public static class InputHandler {
                 HandleDelete(textBox, e);
                 break;
         }
+        TextProcessor.ProcessAll();
         return true;
     }
 

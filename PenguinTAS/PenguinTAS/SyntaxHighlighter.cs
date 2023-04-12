@@ -27,9 +27,6 @@ public static class SyntaxHighlighter {
         else if (textBox.Text[lineStart] == '#') {
             SetColor(textBox, lineStart, textBox.Lines[line].Length, Color.LightGreen);
         }
-        else {
-            SetColor(textBox, lineStart, textBox.Lines[line].Length, Color.White);
-        }
     }
 
     static void SetColor(RichTextBox textBox, int start, int length, Color color) {

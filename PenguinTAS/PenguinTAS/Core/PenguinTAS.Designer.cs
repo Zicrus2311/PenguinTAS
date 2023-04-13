@@ -23,6 +23,7 @@
         ///  the contents of this method with the code editor.
         /// </summary>
         private void InitializeComponent() {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(PenguinTAS));
             this.menuStrip = new System.Windows.Forms.MenuStrip();
             this.fileMenu = new System.Windows.Forms.ToolStripMenuItem();
             this.newButton = new System.Windows.Forms.ToolStripMenuItem();
@@ -157,7 +158,7 @@
             // 
             this.undoButton.Name = "undoButton";
             this.undoButton.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Z)));
-            this.undoButton.Size = new System.Drawing.Size(180, 22);
+            this.undoButton.Size = new System.Drawing.Size(166, 22);
             this.undoButton.Text = "Undo";
             this.undoButton.Click += new System.EventHandler(this.Menu_Undo);
             // 
@@ -165,20 +166,20 @@
             // 
             this.redoButton.Name = "redoButton";
             this.redoButton.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Y)));
-            this.redoButton.Size = new System.Drawing.Size(180, 22);
+            this.redoButton.Size = new System.Drawing.Size(166, 22);
             this.redoButton.Text = "Redo";
             this.redoButton.Click += new System.EventHandler(this.Menu_Redo);
             // 
             // editMenuSeperator1
             // 
             this.editMenuSeperator1.Name = "editMenuSeperator1";
-            this.editMenuSeperator1.Size = new System.Drawing.Size(177, 6);
+            this.editMenuSeperator1.Size = new System.Drawing.Size(163, 6);
             // 
             // cutButton
             // 
             this.cutButton.Name = "cutButton";
             this.cutButton.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.X)));
-            this.cutButton.Size = new System.Drawing.Size(180, 22);
+            this.cutButton.Size = new System.Drawing.Size(166, 22);
             this.cutButton.Text = "Cut";
             this.cutButton.Click += new System.EventHandler(this.Menu_Cut);
             // 
@@ -186,7 +187,7 @@
             // 
             this.copyButton.Name = "copyButton";
             this.copyButton.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.C)));
-            this.copyButton.Size = new System.Drawing.Size(180, 22);
+            this.copyButton.Size = new System.Drawing.Size(166, 22);
             this.copyButton.Text = "Copy";
             this.copyButton.Click += new System.EventHandler(this.Menu_Copy);
             // 
@@ -194,7 +195,7 @@
             // 
             this.pasteButton.Name = "pasteButton";
             this.pasteButton.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.V)));
-            this.pasteButton.Size = new System.Drawing.Size(180, 22);
+            this.pasteButton.Size = new System.Drawing.Size(166, 22);
             this.pasteButton.Text = "Paste";
             this.pasteButton.Click += new System.EventHandler(this.Menu_Paste);
             // 
@@ -202,20 +203,20 @@
             // 
             this.duplicateButton.Name = "duplicateButton";
             this.duplicateButton.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.D)));
-            this.duplicateButton.Size = new System.Drawing.Size(180, 22);
+            this.duplicateButton.Size = new System.Drawing.Size(166, 22);
             this.duplicateButton.Text = "Duplicate";
             this.duplicateButton.Click += new System.EventHandler(this.Menu_Duplicate);
             // 
             // editMenuSeperator2
             // 
             this.editMenuSeperator2.Name = "editMenuSeperator2";
-            this.editMenuSeperator2.Size = new System.Drawing.Size(177, 6);
+            this.editMenuSeperator2.Size = new System.Drawing.Size(163, 6);
             // 
             // selectAllButton
             // 
             this.selectAllButton.Name = "selectAllButton";
             this.selectAllButton.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.A)));
-            this.selectAllButton.Size = new System.Drawing.Size(180, 22);
+            this.selectAllButton.Size = new System.Drawing.Size(166, 22);
             this.selectAllButton.Text = "Select All";
             this.selectAllButton.Click += new System.EventHandler(this.Menu_SelectAll);
             // 
@@ -235,21 +236,21 @@
             // documentationButton
             // 
             this.documentationButton.Name = "documentationButton";
-            this.documentationButton.Size = new System.Drawing.Size(180, 22);
+            this.documentationButton.Size = new System.Drawing.Size(160, 22);
             this.documentationButton.Text = "Documentation";
             this.documentationButton.Click += new System.EventHandler(this.Menu_Documentation);
             // 
             // discordButton
             // 
             this.discordButton.Name = "discordButton";
-            this.discordButton.Size = new System.Drawing.Size(180, 22);
+            this.discordButton.Size = new System.Drawing.Size(160, 22);
             this.discordButton.Text = "Discord";
             this.discordButton.Click += new System.EventHandler(this.Menu_Discord);
             // 
             // helpMenuSeperator1
             // 
             this.helpMenuSeperator1.Name = "helpMenuSeperator1";
-            this.helpMenuSeperator1.Size = new System.Drawing.Size(177, 6);
+            this.helpMenuSeperator1.Size = new System.Drawing.Size(157, 6);
             // 
             // helpInfo
             // 
@@ -359,6 +360,7 @@
             this.Controls.Add(this.tableLayoutPanel1);
             this.Controls.Add(this.menuStrip);
             this.ForeColor = System.Drawing.Color.White;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MainMenuStrip = this.menuStrip;
             this.Name = "PenguinTAS";
             this.Text = "Penguin TAS";

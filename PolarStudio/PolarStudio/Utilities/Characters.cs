@@ -9,12 +9,12 @@ public static class Characters {
     static readonly char[] actions = {
         'L', // Move Left / Menu Left
         'R', // Move Right / Menu Right
-        'J', // Jump
-        'A', // Anchor
-        'P', // Pull Rope
-        'G', // Grab
         '<', // Swing Left
         '>', // Swing Right
+        'J', // Jump
+        'A', // Anchor
+        'G', // Grab
+        'P', // Pull Rope
         'F', // Freeze
         'M', // Menu Reload
         'Q', // Quit Reload

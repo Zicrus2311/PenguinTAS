@@ -7,6 +7,7 @@ public static class FileManager {
         for (int i = 0; i < PolarStudio.TextBoxes.Length; i++) {
             PolarStudio.TextBoxes[i].Text = $"{Characters.commentStart}Player {i + 1}";
         }
+        WriteToActive(MergeTextBoxText());
         currentPath = null;
         TextProcessor.ProcessAll();
     }
@@ -14,6 +15,7 @@ public static class FileManager {
     public static void OpenPath(string path) {
         string fileText = File.ReadAllText(path);
         ApplyFileText(fileText);
+        WriteToActive(fileText);
         currentPath = path;
         TextProcessor.ProcessAll();
     }
@@ -35,6 +37,7 @@ public static class FileManager {
 
         string fileText = MergeTextBoxText();
         File.WriteAllText(currentPath, fileText);
+        WriteToActive(fileText);
     }
 
     public static void SaveAs() {
@@ -44,6 +47,7 @@ public static class FileManager {
         if (sfd.ShowDialog() == DialogResult.OK) {
             string fileText = MergeTextBoxText();
             File.WriteAllText(sfd.FileName, fileText);
+            WriteToActive(fileText);
             currentPath = sfd.FileName;
         }
     }
@@ -65,6 +69,16 @@ public static class FileManager {
             }
         }
         return fileText;
+    }
+
+    static void WriteToActive(string fileText) {
+        string directory = AppDomain.CurrentDomain.BaseDirectory + "/TAS Files";
+        if (!Directory.Exists(directory)) return;
+
+        string path = directory + "/polar_active.2tas";
+        File.SetAttributes(path, File.GetAttributes(path) & ~FileAttributes.Hidden);
+        File.WriteAllText(path, fileText);
+        File.SetAttributes(path, File.GetAttributes(path) | FileAttributes.Hidden);
     }
 
     static string GetPlayerText(string fileText, int player) {

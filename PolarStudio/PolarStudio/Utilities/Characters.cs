@@ -7,8 +7,8 @@ public static class Characters {
     public const char commentStart = '#';
 
     static readonly char[] actions = {
-        'L', // Move Left / Menu Left
-        'R', // Move Right / Menu Right
+        'L', // Move Left
+        'R', // Move Right
         '<', // Swing Left
         '>', // Swing Right
         'J', // Jump
@@ -18,9 +18,8 @@ public static class Characters {
         'F', // Freeze
         'M', // Menu Reload
         'Q', // Quit Reload
-        'U', // Menu Up
-        'D', // Menu Down
-        'C'  // Confirm
+        'I', // Print Info
+        'C'  // Load Checkpoint
     };
 
     static readonly char[] whitespace = {
